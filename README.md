@@ -1,6 +1,6 @@
 #Workflow Template
 
-gulp watch
-
+gulp
 ctrl c
+
 
