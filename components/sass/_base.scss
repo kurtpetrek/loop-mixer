@@ -10,7 +10,7 @@ $thumb-shadow-color: #111 !default;
 $thumb-border-width: 1px !default;
 $thumb-border-color: #fff !default;
 
-$track-width: 100px !default;
+$track-width: 75px !default;
 $track-height: 10px !default;
 $track-shadow-size: 2px !default;
 $track-shadow-blur: 2px !default;
@@ -42,7 +42,9 @@ $contrast: 5% !default;
   cursor: pointer;
 }
 
-.fader {
+.fader1 {
+//input[type=range]{
+ // transform: rotate(-90deg);
   -webkit-appearance: none;
   margin: $thumb-height / 2 0;
   width: $track-width;

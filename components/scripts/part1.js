@@ -36,8 +36,18 @@
         gainNodeHH,
         gainNodeBass,
         gainNodeKeys,
+        panNodeDrums,
+        panNodeHH,
+        panNodeBass,
+        panNodeKeys,
         filterLPDrums,
-        filterHPDrums;
+        filterHPDrums,
+        filterLPHH,
+        filterHPHH,
+        filterLPBass,
+        filterHPBass,
+        filterLPKeys,
+        filterHPKeys;
 
  
     //-----------------
@@ -78,28 +88,48 @@
               audio.source_loop[n].connect(filterLPDrums);
               filterLPDrums.connect(filterHPDrums);
               filterHPDrums.connect(gainNodeDrums);
-              gainNodeDrums.connect(audio.context.destination);
+              gainNodeDrums.connect(panNodeDrums);
+              panNodeDrums.connect(audio.context.destination);
               gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
-              filterLPDrums.frequency.value = document.getElementById('drum-lo-pass').value;
-              filterHPDrums.frequency.value = document.getElementById('drum-hi-pass').value;
+              filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
+              filterHPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-hi-pass').value));
+              panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
             }
           
             if(n === 2 || n === 6 || n === 10) {
-              audio.source_loop[n].connect(gainNodeHH);
-              gainNodeHH.connect(audio.context.destination);
+              audio.source_loop[n].connect(filterLPHH);
+              filterLPHH.connect(filterHPHH);
+              filterHPHH.connect(gainNodeHH);
+              gainNodeHH.connect(panNodeHH);
+              panNodeHH.connect(audio.context.destination);
               gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
+              filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
+              filterHPHH.frequency.value = logslider(parseInt(document.getElementById('hh-hi-pass').value));
+              panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
             }
           
             if(n === 3 || n === 7 || n === 11) {
-              audio.source_loop[n].connect(gainNodeBass);
-              gainNodeBass.connect(audio.context.destination);
+              audio.source_loop[n].connect(filterLPBass);
+              filterLPBass.connect(filterHPBass);
+              filterHPBass.connect(gainNodeBass);
+              gainNodeBass.connect(panNodeBass);
+              panNodeBass.connect(audio.context.destination);
               gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
+              filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
+              filterHPBass.frequency.value = logslider(parseInt(document.getElementById('bass-hi-pass').value));
+              panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
             }
           
             if(n === 4 || n === 8 || n === 12) {
-              audio.source_loop[n].connect(gainNodeKeys);
-              gainNodeKeys.connect(audio.context.destination);
+              audio.source_loop[n].connect(filterLPKeys);
+              filterLPKeys.connect(filterHPKeys);
+              filterHPKeys.connect(gainNodeKeys);
+              gainNodeKeys.connect(panNodeKeys);
+              panNodeKeys.connect(audio.context.destination);
               gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
+              filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
+              filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
+              panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value);
             }
           
        //     audio.source_loop[n].connect(audio.context.destination);
@@ -169,10 +199,32 @@
       gainNodeHH = audio.context.createGain();
       gainNodeBass = audio.context.createGain();
       gainNodeKeys = audio.context.createGain();
+      
+      panNodeDrums = audio.context.createStereoPanner();
+      panNodeHH = audio.context.createStereoPanner();
+      panNodeBass = audio.context.createStereoPanner();
+      panNodeKeys = audio.context.createStereoPanner();
+      
+      
       filterLPDrums = audio.context.createBiquadFilter();
       filterLPDrums.type = 'lowpass';
       filterHPDrums = audio.context.createBiquadFilter();
       filterHPDrums.type = 'highpass';
+      
+      filterLPHH = audio.context.createBiquadFilter();
+      filterLPHH.type = 'lowpass';
+      filterHPHH = audio.context.createBiquadFilter();
+      filterHPHH.type = 'highpass';
+      
+      filterLPBass = audio.context.createBiquadFilter();
+      filterLPBass.type = 'lowpass';
+      filterHPBass = audio.context.createBiquadFilter();
+      filterHPBass.type = 'highpass';
+      
+      filterLPKeys = audio.context.createBiquadFilter();
+      filterLPKeys.type = 'lowpass';
+      filterHPKeys = audio.context.createBiquadFilter();
+      filterHPKeys.type = 'highpass';
       
         //---------------
         // Compatibility
@@ -223,7 +275,6 @@
                             button.addEventListener('click', function(e) {
                                 e.preventDefault();
                                 audio.play(parseInt(this.value));  
-                                console.log(this);
                                 audio.stop(op1);
                                 audio.stop(op2);
                                 playingAllLoop1 = false;
@@ -298,7 +349,7 @@ document.getElementById('play-loop-2').addEventListener('click', function(e) {
 
 document.getElementById('play-loop-3').addEventListener('click', function(e) {
   e.preventDefault();
-  gainNodeDrums.gain.value = 0;
+
   
   for(var n = 0; n < audio.files.length; n++) {
     if (n < 8) {
@@ -344,16 +395,36 @@ document.getElementById('keys-volume').addEventListener("input", function(){
 });
 
 //-----------------  
+//  Pans
+//-----------------
+
+document.getElementById('drum-pan').addEventListener("input", function(){
+  panNodeDrums.pan.value = parseInt(this.value) / 100;
+});
+  
+document.getElementById('hh-pan').addEventListener("input", function(){
+  panNodeHH.pan.value = parseInt(this.value) / 100;
+});
+
+document.getElementById('bass-pan').addEventListener("input", function(){
+  panNodeBass.pan.value = parseInt(this.value) / 100;
+});
+
+document.getElementById('keys-pan').addEventListener("input", function(){
+  panNodeKeys.pan.value = parseInt(this.value) / 100;
+});
+
+//-----------------  
 //  Filters
 //-----------------
 
 function logslider(position) {
   // position will be between 0 and 100
-  var minp = 100;
+  var minp = 20;
   var maxp = 20000;
 
   // The result should be between 100 an 10000000
-  var minv = Math.log(100);
+  var minv = Math.log(20);
   var maxv = Math.log(20000);
 
   // calculate adjustment factor
@@ -371,6 +442,38 @@ document.getElementById('drum-hi-pass').addEventListener("input", function(){
   var curve = logslider(parseInt(this.value));
   filterHPDrums.frequency.value = curve;
 });
+
+document.getElementById('hh-lo-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterLPHH.frequency.value = curve;
+});
+
+document.getElementById('hh-hi-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterHPHH.frequency.value = curve;
+});
+
+document.getElementById('bass-lo-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterLPBass.frequency.value = curve;
+});
+
+document.getElementById('bass-hi-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterHPBass.frequency.value = curve;
+});
+
+document.getElementById('keys-lo-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterLPKeys.frequency.value = curve;
+});
+
+document.getElementById('keys-hi-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterHPKeys.frequency.value = curve;
+});
+
+
 
 
 
