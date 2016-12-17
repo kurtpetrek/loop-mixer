@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   <h1>hello</h1>
+   <h1>Making Media</h1>
     <form>
         <button id="button-loop-1" type="button" value="1">Loop 1-Drums</button>
         <button id="button-loop-2" type="button" value="2">Loop 1-HH</button>
@@ -29,6 +29,18 @@
         <button id="play-loop-1" type="button" value="play-loop-1">play-loop-1</button>
         <button id="play-loop-2" type="button" value="play-loop-2">play-loop-2</button>
         <button id="play-loop-3" type="button" value="play-loop-3">play-loop-3</button>
+        <br>
+        <input type="range" min="0" max="100" value="75" id="drum-volume" class="fader">Drum volume
+        <br>
+        <input type="range" min="100" max="20000" value="20000" id="drum-lo-pass">Drum lo pass
+        <br>
+        <input type="range" min="100" max="20000" value="0" id="drum-hi-pass">Drum hi pass
+        <br>
+        <input type="range" min="0" max="100" value="75" id="hh-volume" class="fader">HH volume
+        <br>
+        <input type="range" min="0" max="100" value="75" id="bass-volume" class="fader">Bass volume
+        <br>
+        <input type="range" min="0" max="100" value="75" id="keys-volume" class="fader">Keys volume
     </form>
    
     <script src="js/script.js"></script>

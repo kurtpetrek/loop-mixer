@@ -1,4 +1,3 @@
-
 /* part1.js      (update name changes in gulpfile)
 ==================================== */
 
@@ -36,7 +35,9 @@
     var gainNodeDrums,
         gainNodeHH,
         gainNodeBass,
-        gainNodeKeys;
+        gainNodeKeys,
+        filterLPDrums,
+        filterHPDrums;
 
  
     //-----------------
@@ -74,26 +75,34 @@
             audio.source_loop[n].loop = true;
           
             if(n === 1 || n === 5 || n === 9) {
-              audio.source_loop[n].connect(gainNodeDrums);
+              audio.source_loop[n].connect(filterLPDrums);
+              filterLPDrums.connect(filterHPDrums);
+              filterHPDrums.connect(gainNodeDrums);
               gainNodeDrums.connect(audio.context.destination);
+              gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
+              filterLPDrums.frequency.value = document.getElementById('drum-lo-pass').value;
+              filterHPDrums.frequency.value = document.getElementById('drum-hi-pass').value;
             }
           
             if(n === 2 || n === 6 || n === 10) {
               audio.source_loop[n].connect(gainNodeHH);
               gainNodeHH.connect(audio.context.destination);
+              gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
             }
           
             if(n === 3 || n === 7 || n === 11) {
               audio.source_loop[n].connect(gainNodeBass);
               gainNodeBass.connect(audio.context.destination);
+              gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
             }
           
             if(n === 4 || n === 8 || n === 12) {
-              audio.source_loop[n].connect(gainNodeBass);
-              gainNodeBass.connect(audio.context.destination);
+              audio.source_loop[n].connect(gainNodeKeys);
+              gainNodeKeys.connect(audio.context.destination);
+              gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
             }
           
-            
+       //     audio.source_loop[n].connect(audio.context.destination);
  
             var offset = audio.findSync(n);
             audio.source_loop[n]._startTime = audio.context.currentTime;
@@ -157,9 +166,14 @@
     if (audio.proceed) {
       
       gainNodeDrums = audio.context.createGain();
-        gainNodeHH = audio.context.createGain();
-        gainNodeBass = audio.context.createGain();
-        gainNodeKeys = audio.context.createGain();
+      gainNodeHH = audio.context.createGain();
+      gainNodeBass = audio.context.createGain();
+      gainNodeKeys = audio.context.createGain();
+      filterLPDrums = audio.context.createBiquadFilter();
+      filterLPDrums.type = 'lowpass';
+      filterHPDrums = audio.context.createBiquadFilter();
+      filterHPDrums.type = 'highpass';
+      
         //---------------
         // Compatibility
         //---------------
@@ -208,7 +222,8 @@
                           
                             button.addEventListener('click', function(e) {
                                 e.preventDefault();
-                                audio.play(this.value);  
+                                audio.play(parseInt(this.value));  
+                                console.log(this);
                                 audio.stop(op1);
                                 audio.stop(op2);
                                 playingAllLoop1 = false;
@@ -257,6 +272,8 @@ document.getElementById('play-loop-1').addEventListener('click', function(e) {
 
 document.getElementById('play-loop-2').addEventListener('click', function(e) {
   e.preventDefault();
+  
+  
   for(var n = 0; n < audio.files.length; n++) {
     if (n < 4) {
       audio.stop(n + 1);
@@ -301,3 +318,60 @@ document.getElementById('play-loop-3').addEventListener('click', function(e) {
   playingAllLoop1 = false;
   playingAllLoop2 = false;
 });
+  
+//-----------------  
+//  Volumes
+//-----------------
+
+document.getElementById('drum-volume').addEventListener("input", function(){
+  var curve = (parseInt(this.value) / 100) / (parseInt(this.max) / 100);
+  gainNodeDrums.gain.value = curve * curve;
+});
+  
+document.getElementById('hh-volume').addEventListener("input", function(){
+  var curve = (parseInt(this.value) / 100) / (parseInt(this.max) / 100);
+  gainNodeHH.gain.value = curve * curve;
+});
+
+document.getElementById('bass-volume').addEventListener("input", function(){
+  var curve = (parseInt(this.value) / 100) / (parseInt(this.max) / 100);
+  gainNodeBass.gain.value = curve * curve;
+});
+
+document.getElementById('keys-volume').addEventListener("input", function(){
+  var curve = (parseInt(this.value) / 100) / (parseInt(this.max) / 100);
+  gainNodeKeys.gain.value = curve * curve;
+});
+
+//-----------------  
+//  Filters
+//-----------------
+
+function logslider(position) {
+  // position will be between 0 and 100
+  var minp = 100;
+  var maxp = 20000;
+
+  // The result should be between 100 an 10000000
+  var minv = Math.log(100);
+  var maxv = Math.log(20000);
+
+  // calculate adjustment factor
+  var scale = (maxv-minv) / (maxp-minp);
+
+  return Math.exp(minv + scale*(position-minp));
+}
+
+document.getElementById('drum-lo-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterLPDrums.frequency.value = curve;
+});
+
+document.getElementById('drum-hi-pass').addEventListener("input", function(){
+  var curve = logslider(parseInt(this.value));
+  filterHPDrums.frequency.value = curve;
+});
+
+
+
+

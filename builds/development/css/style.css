@@ -62,3 +62,105 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
+
+/* line 45, ../components/sass/_base.scss */
+.fader {
+  -webkit-appearance: none;
+  margin: 15px 0;
+  width: 100px;
+}
+/* line 50, ../components/sass/_base.scss */
+.fader:focus {
+  outline: none;
+}
+/* line 54, ../components/sass/_base.scss */
+.fader::-webkit-slider-runnable-track {
+  width: 100px;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
+  background: #424242;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+/* line 62, ../components/sass/_base.scss */
+.fader::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
+  border: 1px solid #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 8px;
+  background: #555bc8;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+}
+/* line 68, ../components/sass/_base.scss */
+.fader:focus::-webkit-slider-runnable-track {
+  background: #4f4f4f;
+}
+/* line 72, ../components/sass/_base.scss */
+.fader::-moz-range-track {
+  width: 100px;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
+  background: #424242;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+/* line 80, ../components/sass/_base.scss */
+.fader::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
+  border: 1px solid #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 8px;
+  background: #555bc8;
+  cursor: pointer;
+}
+/* line 84, ../components/sass/_base.scss */
+.fader::-ms-track {
+  width: 100px;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  background: transparent;
+  border-color: transparent;
+  border-width: 30px 0;
+  color: transparent;
+}
+/* line 92, ../components/sass/_base.scss */
+.fader::-ms-fill-lower {
+  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
+  background: #353535;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+/* line 99, ../components/sass/_base.scss */
+.fader::-ms-fill-upper {
+  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
+  background: #424242;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+/* line 106, ../components/sass/_base.scss */
+.fader::-ms-thumb {
+  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
+  border: 1px solid #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 8px;
+  background: #555bc8;
+  cursor: pointer;
+}
+/* line 110, ../components/sass/_base.scss */
+.fader:focus::-ms-fill-lower {
+  background: #424242;
+}
+/* line 114, ../components/sass/_base.scss */
+.fader:focus::-ms-fill-upper {
+  background: #4f4f4f;
+}
