@@ -134,7 +134,7 @@ nav {
   text-align: center;
 }
 
-.loop-btn-stopped:focus {
+.loop-btn-stopped:focus, .loop-btn-playing:focus {
   outline: none;
 }
 
@@ -186,8 +186,10 @@ nav {
 
 .icon { 
   text-align: center;
+  min-height: 30px;
+  height: 5vh;
   img{
-    height: 5vh;
+    height: 100%;
     margin-top: 1vh;
   }
 }

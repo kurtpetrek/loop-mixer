@@ -403,7 +403,7 @@ nav h1 {
 }
 
 /* line 137, ../components/sass/_base.scss */
-.loop-btn-stopped:focus {
+.loop-btn-stopped:focus, .loop-btn-playing:focus {
   outline: none;
 }
 
@@ -453,26 +453,28 @@ nav h1 {
 /* line 187, ../components/sass/_base.scss */
 .icon {
   text-align: center;
-}
-/* line 189, ../components/sass/_base.scss */
-.icon img {
+  min-height: 30px;
   height: 5vh;
+}
+/* line 191, ../components/sass/_base.scss */
+.icon img {
+  height: 100%;
   margin-top: 1vh;
 }
 
-/* line 195, ../components/sass/_base.scss */
+/* line 197, ../components/sass/_base.scss */
 .filter-section {
   position: relative;
   color: #99503c;
   height: 60px;
 }
-/* line 200, ../components/sass/_base.scss */
+/* line 202, ../components/sass/_base.scss */
 .filter-section .label-left {
   position: absolute;
   left: 5%;
   font-size: 10px;
 }
-/* line 206, ../components/sass/_base.scss */
+/* line 208, ../components/sass/_base.scss */
 .filter-section .label-center {
   position: absolute;
   width: 100%;
@@ -480,21 +482,21 @@ nav h1 {
   font-weight: bold;
   bottom: -2px;
 }
-/* line 214, ../components/sass/_base.scss */
+/* line 216, ../components/sass/_base.scss */
 .filter-section .label-right {
   position: absolute;
   right: 5%;
   font-size: 10px;
 }
 
-/* line 221, ../components/sass/_base.scss */
+/* line 223, ../components/sass/_base.scss */
 .volume-container {
   position: relative;
   height: 33vh;
   width: 85px;
   margin: auto;
 }
-/* line 227, ../components/sass/_base.scss */
+/* line 229, ../components/sass/_base.scss */
 .volume-container::after {
   content: "Volume";
   width: 100%;
@@ -506,7 +508,7 @@ nav h1 {
   font-size: 20px;
 }
 
-/* line 241, ../components/sass/_base.scss */
+/* line 243, ../components/sass/_base.scss */
 .volume-section {
   width: 0px;
   height: 0px;

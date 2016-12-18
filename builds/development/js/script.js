@@ -166,6 +166,7 @@
  
             audio.source_loop[n]._playing = true;
         }
+        highlightLoops();
     };
  
     audio.stop = function(n) {
@@ -177,6 +178,7 @@
                 audio.source_once[n][audio.compatibility.stop](0);
             }
         }
+        highlightLoops();
     };
  
     //-----------------------------
@@ -294,6 +296,24 @@
     }
 
 
+function highlightLoops() {
+  
+  for(var x = 0; x < audio.files.length; x++) {
+    var tester = false;
+    if (typeof audio.source_loop[x] != 'undefined') {
+      console.log(audio.source_loop);
+      tester = true;
+    }
+    if (tester && audio.source_loop[x]._playing) {
+      console.log(audio.source_loop[x]);
+      document.getElementById("button-loop-" + (x + 1)).classList.remove("loop-btn-stopped");
+      document.getElementById("button-loop-" + (x + 1)).className += " loop-btn-playing";
+    } else {
+      document.getElementById("button-loop-" + (x + 1)).classList.remove("loop-btn-playing");
+      document.getElementById("button-loop-" + (x + 1)).className += " loop-btn-stopped";
+    }
+  }
+}
 
 
 document.getElementById('stop-all').addEventListener('click', function(e) {
@@ -309,7 +329,11 @@ document.getElementById('play-loop-1').addEventListener('click', function(e) {
     if (n < 4) {
       if (playingAllLoop1 === true){
         audio.stop(n + 1);
+        document.getElementById('play-loop-1').classList.remove("loop-btn-playing");
+        document.getElementById('play-loop-1').className += " loop-btn-stopped";
       } else {
+        document.getElementById('play-loop-1').classList.remove("loop-btn-stopped");
+        document.getElementById('play-loop-1').className += " loop-btn-playing";
         audio.stop(n + 1);
         audio.play(n + 1);
       }
@@ -359,6 +383,7 @@ document.getElementById('play-loop-3').addEventListener('click', function(e) {
     if (n > 7) {
       if (playingAllLoop3 === true){
         audio.stop(n + 1);
+        
       } else {
         audio.stop(n + 1);
         audio.play(n + 1);
