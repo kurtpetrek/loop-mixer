@@ -4,17 +4,17 @@
 $track-color-f: $glbl-clr-1 !default;
 $thumb-color-f: $white !default;
 
-$thumb-radius-f: 30% !default;
-$thumb-height-f: 30px !default;
-$thumb-width-f: 20px !default;
+$thumb-radius-f: 20% !default;
+$thumb-height-f: 75px !default;
+$thumb-width-f: 30px !default;
 $thumb-shadow-size-f: 0px !default;
 $thumb-shadow-blur-f: 0px !default;
 $thumb-shadow-color-f: #111 !default;
-$thumb-border-width-f: 5px !default;
+$thumb-border-width-f: 10px !default;
 $thumb-border-color-f: $glbl-clr-1 !default;
 
-$track-width-f: 75px !default;
-$track-height-f: 10px !default;
+$track-width-f: 27vh !default;
+$track-height-f: 16px !default;
 $track-shadow-size-f: 0px !default;
 $track-shadow-blur-f: 0px !default;
 $track-shadow-color-f: transparent !default;
@@ -45,9 +45,10 @@ $contrast-f: 5% !default;
   cursor: pointer;
 }
 
+
+
 .fader {
-//input[type=range]{
- // transform: rotate(-90deg);
+  
   -webkit-appearance: none;
   margin: $thumb-height-f / 2 0;
   width: $track-width-f;
@@ -120,3 +121,5 @@ $contrast-f: 5% !default;
     background: lighten($track-color-f, $contrast-f);
   }
 }
+
+
