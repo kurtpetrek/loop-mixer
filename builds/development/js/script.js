@@ -130,7 +130,7 @@
               gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
               filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
               filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
-              panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value);
+              panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
             }
           
        //     audio.source_loop[n].connect(audio.context.destination);
