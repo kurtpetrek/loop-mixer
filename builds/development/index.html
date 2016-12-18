@@ -1,69 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title></title>
   <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-   <h1>Making Media</h1>
-    <form>
-        <button id="button-loop-1" type="button" value="1">Loop 1-Drums</button>
-        <button id="button-loop-2" type="button" value="2">Loop 1-HH</button>
-        <button id="button-loop-3" type="button" value="3">Loop 1-Bass</button>
-        <button id="button-loop-4" type="button" value="4">Loop 1-Keys</button><br>
-        <button id="button-loop-5" type="button" value="5">Loop 2-Drums</button>
-        <button id="button-loop-6" type="button" value="6">Loop 2-HH</button>
-        <button id="button-loop-7" type="button" value="7">Loop 2-Bass</button>
-        <button id="button-loop-8" type="button" value="8">Loop 2-Keys</button><br>
-        <button id="button-loop-9" type="button" value="9">Loop 3-Drums</button>
-        <button id="button-loop-10" type="button" value="10">Loop 3-HH</button>
-        <button id="button-loop-11" type="button" value="11">Loop 3-Bass</button>
-        <button id="button-loop-12" type="button" value="12">Loop 3-Keys</button>
-        
-        
-        
-        
-        <br><br>
-        <button id="stop-all" type="button" value="stop">Stop All</button>
-        <button id="play-loop-1" type="button" value="play-loop-1">play-loop-1</button>
-        <button id="play-loop-2" type="button" value="play-loop-2">play-loop-2</button>
-        <button id="play-loop-3" type="button" value="play-loop-3">play-loop-3</button>
-        <br>
-        <input type="range" min="0" max="100" value="75" id="drum-volume" class="fader">Drum volume
-        <br>
-        <input type="range" min="-100" max="100" value="0" id="drum-pan">Drum pan
-        <br>
-        <input type="range" min="20" max="20000" value="20000" id="drum-lo-pass">Drum lo pass
-        <br>
-        <input type="range" min="20" max="20000" value="20" id="drum-hi-pass">Drum hi pass
-        <br>
-        <input type="range" min="0" max="100" value="75" id="hh-volume" class="fader">HH volume
-        <br>
-        <input type="range" min="-100" max="100" value="0" id="hh-pan">HH pan
-        <br>
-        <input type="range" min="20" max="20000" value="20000" id="hh-lo-pass">HH lo pass
-        <br>
-        <input type="range" min="20" max="20000" value="20" id="hh-hi-pass">HH hi pass
-        <br>
-        <input type="range" min="0" max="100" value="75" id="bass-volume" class="fader">Bass volume
-        <br>
-        <input type="range" min="-100" max="100" value="0" id="bass-pan">Bass pan
-        <br>
-        <input type="range" min="20" max="20000" value="20000" id="bass-lo-pass">Bass lo pass
-        <br>
-        <input type="range" min="20" max="20000" value="20" id="bass-hi-pass">Bass hi pass
-        <br>
-        <input type="range" min="0" max="100" value="75" id="keys-volume" class="fader">Keys volume
-        <br>
-        <input type="range" min="-100" max="100" value="0" id="keys-pan">Keys pan
-        <br>
-        <input type="range" min="20" max="20000" value="20000" id="keys-lo-pass">Keys lo pass
-        <br>
-        <input type="range" min="20" max="20000" value="20" id="keys-hi-pass">Keys hi pass
-    </form>
-   
-    <script src="js/script.js"></script>
+  <nav>
+    <h1>Kurt Petrek</h1>
+  </nav>
+
+  <div class="landing-title-container">
+    <h1>Creating<br>Media</h1>
     
+    <div class="landing-play-btn-container">
+      <button id="stop-all" type="button" value="stop">Stop All</button>
+      <label for="stop-all" id="main-play-pause" class="pause-btn landing-play-btn"></label>
+    </div>
+  <!-- /.landing-title-container -->
+  </div>
+  <!-- /.landing-title-container -->
+
+  <div class="mixer-container">
+    
+    <section class="main-loops-container">
+      <button id="play-loop-1" type="button" value="play-loop-1" class="loop-btn-stopped loop-btn-large">Loop 1</button>
+      <button id="play-loop-2" type="button" value="play-loop-2" class="loop-btn-stopped loop-btn-large">Loop 2</button>
+      <button id="play-loop-3" type="button" value="play-loop-3" class="loop-btn-stopped loop-btn-large">Loop 3</button>
+    </section>
+    <!-- /.main-loops-container   -->
+    
+    <!--  Drums
+    ======================  -->
+    <section class="channel-strip">
+     
+      <div class="loop-btns">
+        <button id="button-loop-1" type="button" value="1" class="loop-btn-stopped loop-btn-small">1</button>
+        <button id="button-loop-5" type="button" value="5" class="loop-btn-stopped loop-btn-small">2</button>
+        <button id="button-loop-9" type="button" value="9" class="loop-btn-stopped loop-btn-small">3</button>
+      </div>
+      <!-- /.loop-btns-->
+      
+      <div class="icon">
+        <img src="images/kick-snare.svg" alt="Kick and Snare Icon">
+      </div>
+      <!-- /.icon-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20" id="drum-hi-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">HPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.high-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20000" id="drum-lo-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">LPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.low-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="-100" max="100" value="0" id="drum-pan" class="slider">
+        <p class="label-left">L</p>
+        <p class="label-center">PAN</p>
+        <p class="label-right">R</p>
+      </div>
+      <!-- /.pan -->
+      
+      <div class="volume-section">
+        <input type="range" min="0" max="100" value="75" id="drum-volume" class="fader">
+      </div>
+      <!-- /.volume-section -->
+      
+    </section>
+    <!-- /.channel-strip-->
+    
+    <!--  HiHat
+    ======================  -->
+    <section class="channel-strip">
+     
+      <div class="loop-btns">
+        <button id="button-loop-2" type="button" value="2" class="loop-btn-stopped loop-btn-small">1</button>
+        <button id="button-loop-6" type="button" value="6" class="loop-btn-stopped loop-btn-small">2</button>
+        <button id="button-loop-10" type="button" value="10" class="loop-btn-stopped loop-btn-small">3</button>
+      </div>
+      <!-- /.loop-btns-->
+      
+      <div class="icon">
+        <img src="images/hihat.svg" alt="Hi-Hat Icon">
+      </div>
+      <!-- /.icon-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20" id="hh-hi-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">HPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.high-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20000" id="hh-lo-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">LPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.low-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="-100" max="100" value="0" id="hh-pan" class="slider">
+        <p class="label-left">L</p>
+        <p class="label-center">PAN</p>
+        <p class="label-right">R</p>
+      </div>
+      <!-- /.pan -->
+      
+    </section>
+    <!-- /.channel-strip-->
+    
+    <!--  Bass
+    ======================  -->
+    <section class="channel-strip">
+     
+      <div class="loop-btns">
+        <button id="button-loop-3" type="button" value="3" class="loop-btn-stopped loop-btn-small">1</button>
+        <button id="button-loop-7" type="button" value="7" class="loop-btn-stopped loop-btn-small">2</button>
+        <button id="button-loop-11" type="button" value="11" class="loop-btn-stopped loop-btn-small">3</button>
+      </div>
+      <!-- /.loop-btns-->
+      
+      <div class="icon">
+        <img src="images/bass.svg" alt="Kick and Snare Icon">
+      </div>
+      <!-- /.icon-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20" id="bass-hi-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">HPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.high-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20000" id="bass-lo-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">LPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.low-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="-100" max="100" value="0" id="bass-pan" class="slider">
+        <p class="label-left">L</p>
+        <p class="label-center">PAN</p>
+        <p class="label-right">R</p>
+      </div>
+      <!-- /.pan -->
+      
+    </section>
+    <!-- /.channel-strip-->
+    
+    <!--  Keys
+    ======================  -->
+    <section class="channel-strip">
+     
+      <div class="loop-btns">
+        <button id="button-loop-4" type="button" value="4" class="loop-btn-stopped loop-btn-small">1</button>
+<button id="button-loop-8" type="button" value="8" class="loop-btn-stopped loop-btn-small">2</button>
+<button id="button-loop-12" type="button" value="12" class="loop-btn-stopped loop-btn-small">3</button>
+      </div>
+      <!-- /.loop-btns-->
+      
+      <div class="icon">
+        <img src="images/keys.svg" alt="Kick and Snare Icon">
+      </div>
+      <!-- /.icon-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20" id="keys-hi-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">HPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.high-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="20" max="20000" value="20000" id="keys-lo-pass" class="slider">
+        <p class="label-left">20Hz</p>
+        <p class="label-center">LPF</p>
+        <p class="label-right">20kHz</p>
+      </div>
+      <!-- /.low-pass-filter-->
+      
+      <div class="filter-section">
+        <input type="range" min="-100" max="100" value="0" id="keys-pan" class="slider">
+        <p class="label-left">L</p>
+        <p class="label-center">PAN</p>
+        <p class="label-right">R</p>
+      </div>
+      <!-- /.pan -->
+      
+    </section>
+    <!-- /.channel-strip-->
+
+    
+    
+    
+    
+    <br>
+    
+    
+    
+    
+    <br>
+    
+    
+    
+    
+
+
+
+
+    <br>
+    <br>
+    
+    
+    <br>
+    
+    
+    Drum volume
+    
+    <input type="range" min="0" max="100" value="75" id="hh-volume" class="fader">HH volume
+    
+    
+    <br>
+    <input type="range" min="0" max="100" value="75" id="bass-volume" class="fader">Bass volume
+    
+    <br>
+    <input type="range" min="0" max="100" value="75" id="keys-volume" class="fader">Keys volume
+    
+  </div>
+  <!-- / .mixer-container -->
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>

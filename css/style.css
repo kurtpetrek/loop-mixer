@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 /* line 5, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -63,104 +64,412 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 45, ../components/sass/_base.scss */
-.fader1 {
+/* line 48, ../components/sass/_fader.scss */
+.fader {
   -webkit-appearance: none;
   margin: 15px 0;
   width: 75px;
 }
-/* line 52, ../components/sass/_base.scss */
-.fader1:focus {
+/* line 55, ../components/sass/_fader.scss */
+.fader:focus {
   outline: none;
 }
-/* line 56, ../components/sass/_base.scss */
-.fader1::-webkit-slider-runnable-track {
+/* line 59, ../components/sass/_fader.scss */
+.fader::-webkit-slider-runnable-track {
   width: 75px;
   height: 10px;
   cursor: pointer;
   transition: all .2s ease;
-  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
-  background: #424242;
-  border: 1px solid #000;
-  border-radius: 5px;
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
 }
-/* line 64, ../components/sass/_base.scss */
-.fader1::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
-  border: 1px solid #fff;
+/* line 67, ../components/sass/_fader.scss */
+.fader::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
   height: 30px;
-  width: 30px;
-  border-radius: 8px;
-  background: #555bc8;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -11px;
+  margin-top: -10px;
 }
-/* line 70, ../components/sass/_base.scss */
-.fader1:focus::-webkit-slider-runnable-track {
-  background: #4f4f4f;
+/* line 73, ../components/sass/_fader.scss */
+.fader:focus::-webkit-slider-runnable-track {
+  background: #426c7f;
 }
-/* line 74, ../components/sass/_base.scss */
-.fader1::-moz-range-track {
+/* line 77, ../components/sass/_fader.scss */
+.fader::-moz-range-track {
   width: 75px;
   height: 10px;
   cursor: pointer;
   transition: all .2s ease;
-  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
-  background: #424242;
-  border: 1px solid #000;
-  border-radius: 5px;
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
 }
-/* line 82, ../components/sass/_base.scss */
-.fader1::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
-  border: 1px solid #fff;
+/* line 85, ../components/sass/_fader.scss */
+.fader::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
   height: 30px;
-  width: 30px;
-  border-radius: 8px;
-  background: #555bc8;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
   cursor: pointer;
 }
-/* line 86, ../components/sass/_base.scss */
-.fader1::-ms-track {
+/* line 89, ../components/sass/_fader.scss */
+.fader::-ms-track {
   width: 75px;
   height: 10px;
   cursor: pointer;
   transition: all .2s ease;
   background: transparent;
   border-color: transparent;
-  border-width: 30px 0;
+  border-width: 20px 0;
   color: transparent;
 }
-/* line 94, ../components/sass/_base.scss */
-.fader1::-ms-fill-lower {
-  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
-  background: #353535;
-  border: 1px solid #000;
-  border-radius: 10px;
+/* line 97, ../components/sass/_fader.scss */
+.fader::-ms-fill-lower {
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #30505d;
+  border: 0px solid transparent;
+  border-radius: 0px;
 }
-/* line 101, ../components/sass/_base.scss */
-.fader1::-ms-fill-upper {
-  box-shadow: 2px 2px 2px #222, 0 0 2px #2f2f2f;
-  background: #424242;
-  border: 1px solid #000;
-  border-radius: 10px;
+/* line 104, ../components/sass/_fader.scss */
+.fader::-ms-fill-upper {
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
 }
-/* line 108, ../components/sass/_base.scss */
-.fader1::-ms-thumb {
-  box-shadow: 1px 1px 1px #111, 0 0 1px #1e1e1e;
-  border: 1px solid #fff;
+/* line 111, ../components/sass/_fader.scss */
+.fader::-ms-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
   height: 30px;
-  width: 30px;
-  border-radius: 8px;
-  background: #555bc8;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
   cursor: pointer;
 }
-/* line 112, ../components/sass/_base.scss */
-.fader1:focus::-ms-fill-lower {
-  background: #424242;
+/* line 115, ../components/sass/_fader.scss */
+.fader:focus::-ms-fill-lower {
+  background: #395e6e;
 }
-/* line 116, ../components/sass/_base.scss */
-.fader1:focus::-ms-fill-upper {
-  background: #4f4f4f;
+/* line 119, ../components/sass/_fader.scss */
+.fader:focus::-ms-fill-upper {
+  background: #426c7f;
+}
+
+/* line 48, ../components/sass/_slider.scss */
+.slider {
+  -webkit-appearance: none;
+  margin: 20px 0;
+  width: 80%;
+}
+/* line 55, ../components/sass/_slider.scss */
+.slider:focus {
+  outline: none;
+}
+/* line 59, ../components/sass/_slider.scss */
+.slider::-webkit-slider-runnable-track {
+  width: 80%;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+/* line 67, ../components/sass/_slider.scss */
+.slider::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
+  height: 40px;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -15px;
+}
+/* line 73, ../components/sass/_slider.scss */
+.slider:focus::-webkit-slider-runnable-track {
+  background: #426c7f;
+}
+/* line 77, ../components/sass/_slider.scss */
+.slider::-moz-range-track {
+  width: 80%;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+/* line 85, ../components/sass/_slider.scss */
+.slider::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
+  height: 40px;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
+  cursor: pointer;
+}
+/* line 89, ../components/sass/_slider.scss */
+.slider::-ms-track {
+  width: 80%;
+  height: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  background: transparent;
+  border-color: transparent;
+  border-width: 20px 0;
+  color: transparent;
+}
+/* line 97, ../components/sass/_slider.scss */
+.slider::-ms-fill-lower {
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #30505d;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+/* line 104, ../components/sass/_slider.scss */
+.slider::-ms-fill-upper {
+  box-shadow: 0px 0px 0px transparent, 0 0 0px rgba(13, 13, 13, 0);
+  background: #395e6e;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+/* line 111, ../components/sass/_slider.scss */
+.slider::-ms-thumb {
+  box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+  border: 5px solid #395e6e;
+  height: 40px;
+  width: 20px;
+  border-radius: 30%;
+  background: #fefefe;
+  cursor: pointer;
+}
+/* line 115, ../components/sass/_slider.scss */
+.slider:focus::-ms-fill-lower {
+  background: #395e6e;
+}
+/* line 119, ../components/sass/_slider.scss */
+.slider:focus::-ms-fill-upper {
+  background: #426c7f;
+}
+
+/* line 124, ../components/sass/_slider.scss */
+.slider {
+  margin-left: 10%;
+}
+
+/* line 9, ../components/sass/_base.scss */
+nav {
+  width: 100%;
+  height: 45px;
+  background: #28424c;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+}
+/* line 16, ../components/sass/_base.scss */
+nav h1 {
+  color: #fefefe;
+  font-size: 45px;
+  position: absolute;
+  bottom: -7px;
+  left: 7px;
+}
+
+/* line 30, ../components/sass/_base.scss */
+.landing-title-container {
+  height: 100vh;
+  min-height: 400px;
+  width: 33%;
+  float: left;
+}
+/* line 36, ../components/sass/_base.scss */
+.landing-title-container h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15vh;
+  text-align: center;
+  padding-top: 10vh;
+  color: #28424c;
+  -webkit-text-stroke: 0.15vw #99503c;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* line 47, ../components/sass/_base.scss */
+.landing-play-btn-container {
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}
+/* line 52, ../components/sass/_base.scss */
+.landing-play-btn-container button {
+  display: none;
+}
+/* line 56, ../components/sass/_base.scss */
+.landing-play-btn-container .landing-play-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+/* line 65, ../components/sass/_base.scss */
+.play-btn, .pause-btn {
+  box-sizing: border-box;
+  width: 20vh;
+  height: 20vh;
+  border-radius: 50%;
+  border: 5px solid #28424c;
+  cursor: pointer;
+}
+/* line 73, ../components/sass/_base.scss */
+.play-btn::after, .pause-btn::after {
+  content: "";
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  border: 6vh solid transparent;
+  border-left: 10vh solid #28424c;
+  top: 3.5vh;
+  left: 6vh;
+  transition: .25s;
+}
+/* line 85, ../components/sass/_base.scss */
+.play-btn::before, .pause-btn::before {
+  content: "";
+  position: absolute;
+  height: 10vh;
+  width: 0px;
+  border: 0px solid transparent;
+  border-left: 3.5vh solid #99503c;
+  top: 4vh;
+  left: 5vh;
+  opacity: 0;
+  transition: .25s;
+}
+
+/* line 99, ../components/sass/_base.scss */
+.pause-btn {
+  transform: rotate(180deg);
+}
+/* line 102, ../components/sass/_base.scss */
+.pause-btn::after {
+  content: "";
+  position: absolute;
+  height: 10vh;
+  width: 0px;
+  border: 0px solid transparent;
+  border-left: 3.5vh solid #99503c;
+  top: 4vh;
+  left: 10vh;
+}
+/* line 113, ../components/sass/_base.scss */
+.pause-btn::before {
+  opacity: 1;
+}
+
+/* line 118, ../components/sass/_base.scss */
+.mixer-container {
+  box-sizing: border-box;
+  float: right;
+  margin-right: 3%;
+  width: 60%;
+  border-radius: 0% 0% 10% 10%;
+  border: 1vh solid #99503c;
+  border-top: 0vh solid #99503c;
+  height: 93vh;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* line 130, ../components/sass/_base.scss */
+.main-loops-container {
+  padding: 2vh 0vh;
+  text-align: center;
+}
+
+/* line 135, ../components/sass/_base.scss */
+.loop-btn-stopped:focus {
+  outline: none;
+}
+
+/* line 139, ../components/sass/_base.scss */
+.loop-btn-stopped {
+  box-sizing: border-box;
+  border: 1vh solid #99503c;
+  background: #bfc7c7;
+  color: #99503c;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* line 149, ../components/sass/_base.scss */
+.loop-btn-large {
+  min-height: 30px;
+  height: 5vh;
+  border-radius: 30px;
+  padding: 0vh 10%;
+  line-height: 1em;
+  font-size: 14px;
+}
+
+/* line 166, ../components/sass/_base.scss */
+.channel-strip {
+  float: left;
+  width: 25%;
+}
+
+/* line 171, ../components/sass/_base.scss */
+.loop-btns {
+  text-align: center;
+}
+
+/* line 175, ../components/sass/_base.scss */
+.icon {
+  text-align: center;
+}
+/* line 177, ../components/sass/_base.scss */
+.icon img {
+  height: 5vh;
+  margin-top: 1vh;
+}
+
+/* line 183, ../components/sass/_base.scss */
+.filter-section {
+  position: relative;
+  color: #99503c;
+  height: 60px;
+}
+/* line 188, ../components/sass/_base.scss */
+.filter-section .label-left {
+  position: absolute;
+  left: 5%;
+  font-size: 10px;
+}
+/* line 194, ../components/sass/_base.scss */
+.filter-section .label-center {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  bottom: -2px;
+}
+/* line 202, ../components/sass/_base.scss */
+.filter-section .label-right {
+  position: absolute;
+  right: 5%;
+  font-size: 10px;
 }
