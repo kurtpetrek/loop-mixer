@@ -6,6 +6,7 @@
     
     h1 {
       width: 50%;
+      padding-top: 5vh;
     }
     .landing-play-btn-container {
       width: 50%;
@@ -14,7 +15,10 @@
   }
   
   .mixer-container {
+    padding-top: 20px;
     min-width: 94%;
+    border-top: 1vh solid $glbl-clr-6;
+    border-radius: 10% 10%;
   }
 }
 

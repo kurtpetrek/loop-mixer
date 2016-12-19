@@ -12,7 +12,7 @@
   <nav>
     <h1>Kurt Petrek</h1>
   </nav>
-
+  
   <div class="landing-title-container">
     <h1>Creating<br>Media</h1>
     
@@ -24,7 +24,7 @@
   </div>
   <!-- /.landing-title-container -->
 
-  <div class="mixer-container">
+  <div class="mixer-container mixer-off" id="mixer">
     
     <section class="main-loops-container">
       <button id="play-loop-1" type="button" value="play-loop-1" class="loop-btn-stopped loop-btn-large">Loop 1</button>
@@ -45,14 +45,14 @@
       <!-- /.loop-btns-->
       
       <div class="icon">
-        <img src="images/kick-snare.svg" alt="Kick and Snare Icon">
+        <img src="images/kick-snare.svg" alt="Kick and Snare">
       </div>
       <!-- /.icon-->
       
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20" id="drum-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">HPF</p>
+        <p class="label-center hpf">HPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.high-pass-filter-->
@@ -60,7 +60,7 @@
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20000" id="drum-lo-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">LPF</p>
+        <p class="label-center lpf">LPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.low-pass-filter-->
@@ -68,7 +68,7 @@
       <div class="filter-section">
         <input type="range" min="-100" max="100" value="0" id="drum-pan" class="slider">
         <p class="label-left">L</p>
-        <p class="label-center">Pan</p>
+        <p class="label-center pan">Pan</p>
         <p class="label-right">R</p>
       </div>
       <!-- /.pan -->
@@ -95,14 +95,14 @@
       <!-- /.loop-btns-->
       
       <div class="icon">
-        <img src="images/hihat.svg" alt="Hi-Hat Icon">
+        <img src="images/hihat.svg" alt="Hi-Hat">
       </div>
       <!-- /.icon-->
       
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20" id="hh-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">HPF</p>
+        <p class="label-center hpf">HPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.high-pass-filter-->
@@ -110,7 +110,7 @@
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20000" id="hh-lo-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">LPF</p>
+        <p class="label-center lpf">LPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.low-pass-filter-->
@@ -118,7 +118,7 @@
       <div class="filter-section">
         <input type="range" min="-100" max="100" value="0" id="hh-pan" class="slider">
         <p class="label-left">L</p>
-        <p class="label-center">Pan</p>
+        <p class="label-center pan">Pan</p>
         <p class="label-right">R</p>
       </div>
       <!-- /.pan -->
@@ -145,14 +145,14 @@
       <!-- /.loop-btns-->
       
       <div class="icon">
-        <img src="images/bass.svg" alt="Kick and Snare Icon">
+        <img src="images/bass.svg" alt="Bass">
       </div>
       <!-- /.icon-->
       
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20" id="bass-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">HPF</p>
+        <p class="label-center hpf">HPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.high-pass-filter-->
@@ -160,7 +160,7 @@
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20000" id="bass-lo-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">LPF</p>
+        <p class="label-center lpf">LPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.low-pass-filter-->
@@ -168,7 +168,7 @@
       <div class="filter-section">
         <input type="range" min="-100" max="100" value="0" id="bass-pan" class="slider">
         <p class="label-left">L</p>
-        <p class="label-center">Pan</p>
+        <p class="label-center pan">Pan</p>
         <p class="label-right">R</p>
       </div>
       <!-- /.pan -->
@@ -195,14 +195,16 @@
       <!-- /.loop-btns-->
       
       <div class="icon">
-        <img src="images/keys.svg" alt="Kick and Snare Icon">
+         <a href="http://www.kurtpetrek.com/piano" target="_blank">
+          <img src="images/keys.svg" alt="Keyboard, click to open playable keyboard">
+        </a>
       </div>
       <!-- /.icon-->
       
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20" id="keys-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">HPF</p>
+        <p class="label-center hpf">HPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.high-pass-filter-->
@@ -210,7 +212,7 @@
       <div class="filter-section">
         <input type="range" min="20" max="20000" value="20000" id="keys-lo-pass" class="slider">
         <p class="label-left">20Hz</p>
-        <p class="label-center">LPF</p>
+        <p class="label-center lpf">LPF</p>
         <p class="label-right">20kHz</p>
       </div>
       <!-- /.low-pass-filter-->
@@ -218,7 +220,7 @@
       <div class="filter-section">
         <input type="range" min="-100" max="100" value="0" id="keys-pan" class="slider">
         <p class="label-left">L</p>
-        <p class="label-center">Pan</p>
+        <p class="label-center pan">Pan</p>
         <p class="label-right">R</p>
       </div>
       <!-- /.pan -->

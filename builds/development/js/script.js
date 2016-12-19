@@ -168,7 +168,7 @@ audio.play = function (n) {
 
     audio.source_loop[n]._playing = true;
   }
-  highlightLoops();
+  
 };
 
 audio.stop = function (n) {
@@ -180,7 +180,7 @@ audio.stop = function (n) {
       audio.source_once[n][audio.compatibility.stop](0);
     }
   }
-  highlightLoops();
+  
 };
 
 //-----------------------------
@@ -288,6 +288,7 @@ if (audio.proceed) {
               playingAllLoop1 = false;
               playingAllLoop2 = false;
               playingAllLoop3 = false;
+              highlightLoops();
             });
           },
           function () {
@@ -315,7 +316,7 @@ function highlightLoops() {
     if (typeof audio.source_loop[x] != 'undefined') {
       if (audio.source_loop[x]._playing){
         tester = true;
-        playing++;
+        
         
         if (x == 1 || x == 4 || x == 7 || x == 10) {
           loop1++;
@@ -330,15 +331,14 @@ function highlightLoops() {
     } 
     
     if (tester ) {
+      playing++;
       document.getElementById("button-loop-" + x).classList.remove("loop-btn-stopped");
-      document.getElementById("button-loop-" + x).classList.remove("loop-btn-playing");
-      document.getElementById("button-loop-" + x).className += " loop-btn-playing";
+      document.getElementById("button-loop-" + x).classList.add("loop-btn-playing");
       
     } else {
       
       document.getElementById("button-loop-" + x).classList.remove("loop-btn-playing");
-      document.getElementById("button-loop-" + x).classList.remove("loop-btn-stopped");
-      document.getElementById("button-loop-" + x).className += " loop-btn-stopped";
+      document.getElementById("button-loop-" + x).classList.add("loop-btn-stopped");
     }
     
   }
@@ -389,11 +389,17 @@ function highlightLoops() {
     document.getElementById('main-play-pause').classList.remove("play-btn");
     document.getElementById('main-play-pause').className += " play-btn";
     
+    
+    document.getElementById('mixer').classList.remove("mixer-off");
+    document.getElementById('mixer').className += " mixer-off";
+    
   } else {
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
     document.getElementById('main-play-pause').className += " pause-btn";
     
+    document.getElementById('mixer').classList.remove("mixer-off");
+    audioPlaying = true;
   }
 
 
@@ -404,24 +410,46 @@ function highlightLoops() {
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
   
+  if(document.getElementById('stop-all').classList.contains("pause-btn")) {
+    audioPlaying = true;
+  }
+  
   if (!audioPlaying) {
+    for (var n = 0; n < audio.files.length; n++) {
+      audio.stop(n + 1);
+    }
     audio.play(3);
     audio.play(6);
     audio.play(9);
     audio.play(12);
     
     audioPlaying = true;
-    document.getElementById('main-play-pause').classList.remove("pause-btn");
-    document.getElementById('main-play-pause').classList.remove("play-btn");
-    document.getElementById('main-play-pause').className += " pause-btn";
+    
+    if(!document.getElementById('main-play-pause').classList.contains("pause-btn")){
+      document.getElementById('main-play-pause').classList.add("pause-btn")
+    }
+    if(document.getElementById('main-play-pause').classList.contains("play-btn")){
+      document.getElementById('main-play-pause').classList.remove("play-btn");
+    }
+    
   } else {
     for (var n = 0; n < audio.files.length; n++) {
       audio.stop(n + 1);
     }
-    document.getElementById('main-play-pause').classList.remove("pause-btn");
-    document.getElementById('main-play-pause').classList.remove("play-btn");
-    document.getElementById('main-play-pause').className += " play-btn";
+    
+    if(document.getElementById('main-play-pause').classList.contains("pause-btn")){
+      document.getElementById('main-play-pause').classList.remove("pause-btn")
+    }
+    if(!document.getElementById('main-play-pause').classList.contains("play-btn")){
+      document.getElementById('main-play-pause').classList.add("play-btn");
+    }
+    
+    audioPlaying = false;
   }
+  
+  
+  
+  highlightLoops();
 });
 
 document.getElementById('play-loop-1').addEventListener('click', function (e) {
@@ -443,6 +471,8 @@ document.getElementById('play-loop-1').addEventListener('click', function (e) {
   playingAllLoop1 = !playingAllLoop1;
   playingAllLoop2 = false;
   playingAllLoop3 = false;
+  
+  highlightLoops();
 });
 
 document.getElementById('play-loop-2').addEventListener('click', function (e) {
@@ -466,6 +496,8 @@ document.getElementById('play-loop-2').addEventListener('click', function (e) {
   playingAllLoop2 = !playingAllLoop2;
   playingAllLoop1 = false;
   playingAllLoop3 = false;
+  
+  highlightLoops();
 });
 
 document.getElementById('play-loop-3').addEventListener('click', function (e) {
@@ -490,6 +522,8 @@ document.getElementById('play-loop-3').addEventListener('click', function (e) {
   playingAllLoop3 = !playingAllLoop3;
   playingAllLoop1 = false;
   playingAllLoop2 = false;
+  
+  highlightLoops();
 });
 
 //-----------------  
@@ -594,6 +628,70 @@ document.getElementById('keys-hi-pass').addEventListener("input", function () {
   var curve = logslider(parseInt(this.value));
   filterHPKeys.frequency.value = curve;
 });
+
+//===================
+//  show hints
+//===================
+
+function showHint(el, text) {
+  el.addEventListener("mouseover", function(e){
+    
+    var hint = document.createElement("p");
+    hint.classList.add("help-hint");
+    hint.style.left = e.pageX - (hint.offsetWidth / 2) + "px";
+    hint.style.top = e.pageY + 25 + "px";
+    hint.innerHTML += text;
+    document.querySelector("body").appendChild(hint);
+    
+    this.addEventListener("mousemove", function(f){
+      document.querySelector(".help-hint").style.left = f.pageX - (document.querySelector(".help-hint").offsetWidth / 2) + "px";
+      document.querySelector(".help-hint").style.top = f.pageY + 25 + "px";
+    });
+    
+    this.parentNode.parentNode.addEventListener("mouseout", function handler(){
+      document.querySelector("body").removeChild(hint);
+      this.removeEventListener("mouseout", handler);
+    }); 
+  });
+}
+
+var lpfSections = document.querySelectorAll(".lpf");
+
+for (i = 0; i < lpfSections.length; ++i) {
+  showHint(lpfSections[i], "<b>Low Pass Filter</b><br>Move left to cut high frequencies.<br>WARNING<br>If this crosses HPF there will be no sound.");
+  
+}
+
+var hpfSections = document.querySelectorAll(".hpf");
+
+for (i = 0; i < hpfSections.length; ++i) {
+  showHint(hpfSections[i], "<b>High Pass Filter</b><br>Move right to cut low frequencies.<br>WARNING<br>If this crosses LPF there will be no sound.");
+  
+}
+
+var panSections = document.querySelectorAll(".pan");
+
+for (i = 0; i < panSections.length; ++i) {
+  showHint(panSections[i], "<b>Stereo Pan</b><br>Moves sound left and right within stereo field.");
+}
+
+var iconSections = document.querySelectorAll("img");
+
+for (i = 0; i < iconSections.length; ++i) {
+  showHint(iconSections[i], iconSections[i].alt);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* part2.js      (update name changes in gulpfile)
 ==================================== */

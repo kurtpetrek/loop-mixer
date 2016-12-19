@@ -273,7 +273,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-left: 10%;
 }
 
-/* line 9, ../components/sass/_base.scss */
+/* line 4, ../components/sass/_base.scss */
+body {
+  background: #bfc7c7;
+}
+
+/* line 12, ../components/sass/_base.scss */
 nav {
   width: 100vw;
   height: 45px;
@@ -281,23 +286,23 @@ nav {
   font-family: "Open Sans", sans-serif;
   position: relative;
 }
-/* line 16, ../components/sass/_base.scss */
+/* line 19, ../components/sass/_base.scss */
 nav h1 {
-  color: #fefefe;
+  color: #bfc7c7;
   font-size: 45px;
   position: absolute;
   bottom: -7px;
   left: 7px;
 }
 
-/* line 30, ../components/sass/_base.scss */
+/* line 33, ../components/sass/_base.scss */
 .landing-title-container {
   height: calc(100vh - 45px);
   min-height: 400px;
   width: 33%;
   float: left;
 }
-/* line 37, ../components/sass/_base.scss */
+/* line 40, ../components/sass/_base.scss */
 .landing-title-container h1 {
   font-family: "Open Sans", sans-serif;
   font-size: 15vh;
@@ -310,30 +315,30 @@ nav h1 {
   width: 100%;
 }
 @media (max-height: 333.33333px) {
-  /* line 37, ../components/sass/_base.scss */
+  /* line 40, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 50px;
   }
 }
 @media (min-height: 533.33333px) {
-  /* line 37, ../components/sass/_base.scss */
+  /* line 40, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 80px;
   }
 }
 
-/* line 52, ../components/sass/_base.scss */
+/* line 56, ../components/sass/_base.scss */
 .landing-play-btn-container {
   height: 50vh;
   width: 100%;
   position: relative;
   float: left;
 }
-/* line 58, ../components/sass/_base.scss */
+/* line 62, ../components/sass/_base.scss */
 .landing-play-btn-container button {
   display: none;
 }
-/* line 62, ../components/sass/_base.scss */
+/* line 66, ../components/sass/_base.scss */
 .landing-play-btn-container .landing-play-btn {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -341,7 +346,7 @@ nav h1 {
   left: 50%;
 }
 
-/* line 72, ../components/sass/_base.scss */
+/* line 76, ../components/sass/_base.scss */
 .play-btn, .pause-btn {
   box-sizing: border-box;
   width: 20vh;
@@ -350,7 +355,7 @@ nav h1 {
   border: 5px solid #28424c;
   cursor: pointer;
 }
-/* line 80, ../components/sass/_base.scss */
+/* line 84, ../components/sass/_base.scss */
 .play-btn::after, .pause-btn::after {
   content: "";
   position: absolute;
@@ -362,7 +367,7 @@ nav h1 {
   left: 6vh;
   transition: .25s;
 }
-/* line 92, ../components/sass/_base.scss */
+/* line 97, ../components/sass/_base.scss */
 .play-btn::before, .pause-btn::before {
   content: "";
   position: absolute;
@@ -376,11 +381,20 @@ nav h1 {
   transition: .25s;
 }
 
-/* line 106, ../components/sass/_base.scss */
+/* line 112, ../components/sass/_base.scss */
+.play-btn:hover::after, .pause-btn:hover::after {
+  border-left-color: #78abb9;
+}
+/* line 115, ../components/sass/_base.scss */
+.play-btn:hover::before, .pause-btn:hover::before {
+  border-left-color: #78abb9;
+}
+
+/* line 120, ../components/sass/_base.scss */
 .pause-btn {
   transform: rotate(180deg);
 }
-/* line 109, ../components/sass/_base.scss */
+/* line 123, ../components/sass/_base.scss */
 .pause-btn::after {
   content: "";
   position: absolute;
@@ -391,12 +405,12 @@ nav h1 {
   top: 4vh;
   left: 10vh;
 }
-/* line 120, ../components/sass/_base.scss */
+/* line 134, ../components/sass/_base.scss */
 .pause-btn::before {
   opacity: 1;
 }
 
-/* line 125, ../components/sass/_base.scss */
+/* line 141, ../components/sass/_base.scss */
 .mixer-container {
   box-sizing: border-box;
   float: right;
@@ -409,20 +423,33 @@ nav h1 {
   min-height: 470px;
   max-height: 720px;
   font-family: "Open Sans", sans-serif;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* line 139, ../components/sass/_base.scss */
+/* line 156, ../components/sass/_base.scss */
+.mixer-off {
+  transition: 1s;
+  filter: grayscale(50%) brightness(80%);
+}
+
+/* line 161, ../components/sass/_base.scss */
+.mixer-off:hover {
+  transition: .25s;
+  filter: grayscale(30%) brightness(90%);
+}
+
+/* line 166, ../components/sass/_base.scss */
 .main-loops-container {
   padding: 2vh 0vh;
   text-align: center;
 }
 
-/* line 144, ../components/sass/_base.scss */
+/* line 171, ../components/sass/_base.scss */
 .loop-btn-stopped:focus, .loop-btn-playing:focus {
   outline: none;
 }
 
-/* line 148, ../components/sass/_base.scss */
+/* line 175, ../components/sass/_base.scss */
 .loop-btn-stopped {
   box-sizing: border-box;
   border: 1vh solid #99503c;
@@ -431,9 +458,10 @@ nav h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   cursor: pointer;
+  transition: .25s;
 }
 
-/* line 158, ../components/sass/_base.scss */
+/* line 186, ../components/sass/_base.scss */
 .loop-btn-playing {
   box-sizing: border-box;
   border: 1vh solid #395e6e;
@@ -442,9 +470,10 @@ nav h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   cursor: pointer;
+  transition: .25s;
 }
 
-/* line 168, ../components/sass/_base.scss */
+/* line 197, ../components/sass/_base.scss */
 .loop-btn-large {
   min-height: 30px;
   height: 5vh;
@@ -454,64 +483,65 @@ nav h1 {
   font-size: 14px;
 }
 
-/* line 185, ../components/sass/_base.scss */
+/* line 214, ../components/sass/_base.scss */
 .channel-strip {
   float: left;
   width: 25%;
 }
 
-/* line 190, ../components/sass/_base.scss */
+/* line 219, ../components/sass/_base.scss */
 .loop-btns {
   text-align: center;
 }
 
-/* line 194, ../components/sass/_base.scss */
+/* line 223, ../components/sass/_base.scss */
 .icon {
   text-align: center;
   min-height: 30px;
   height: 5vh;
 }
-/* line 198, ../components/sass/_base.scss */
+/* line 227, ../components/sass/_base.scss */
 .icon img {
   height: 100%;
   margin-top: 1vh;
 }
 
-/* line 204, ../components/sass/_base.scss */
+/* line 233, ../components/sass/_base.scss */
 .filter-section {
   position: relative;
   color: #99503c;
   height: 60px;
 }
-/* line 209, ../components/sass/_base.scss */
+/* line 238, ../components/sass/_base.scss */
 .filter-section .label-left {
   position: absolute;
   left: 5%;
   font-size: 10px;
 }
-/* line 215, ../components/sass/_base.scss */
+/* line 244, ../components/sass/_base.scss */
 .filter-section .label-center {
   position: absolute;
-  width: 100%;
+  transform: translate(-50%, 0%);
+  left: 50%;
   text-align: center;
   font-weight: bold;
   bottom: -2px;
 }
-/* line 223, ../components/sass/_base.scss */
+/* line 254, ../components/sass/_base.scss */
 .filter-section .label-right {
   position: absolute;
   right: 5%;
   font-size: 10px;
 }
 
-/* line 230, ../components/sass/_base.scss */
+/* line 263, ../components/sass/_base.scss */
 .volume-container {
   position: relative;
   height: 33vh;
   width: 85px;
   margin: auto;
 }
-/* line 236, ../components/sass/_base.scss */
+/* line 269, ../components/sass/_base.scss */
 .volume-container::after {
   content: "Volume";
   width: 100%;
@@ -523,13 +553,36 @@ nav h1 {
   font-size: 20px;
 }
 
-/* line 250, ../components/sass/_base.scss */
+/* line 283, ../components/sass/_base.scss */
 .volume-section {
   width: 0px;
   height: 0px;
   position: absolute;
   bottom: 10%;
   transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+
+/* line 295, ../components/sass/_base.scss */
+.help-hint {
+  position: absolute;
+  max-width: 190px;
+  background: #99503c;
+  color: #fefefe;
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px;
+}
+/* line 305, ../components/sass/_base.scss */
+.help-hint::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  top: 0px;
+  left: 50%;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #99503c;
 }
 
 @media (max-width: 920px) {
@@ -542,38 +595,42 @@ nav h1 {
   /* line 7, ../components/sass/_responsive.scss */
   .landing-title-container h1 {
     width: 50%;
+    padding-top: 5vh;
   }
-  /* line 10, ../components/sass/_responsive.scss */
+  /* line 11, ../components/sass/_responsive.scss */
   .landing-title-container .landing-play-btn-container {
     width: 50%;
     height: 40vh;
   }
 
-  /* line 16, ../components/sass/_responsive.scss */
+  /* line 17, ../components/sass/_responsive.scss */
   .mixer-container {
+    padding-top: 20px;
     min-width: 94%;
+    border-top: 1vh solid #99503c;
+    border-radius: 10% 10%;
   }
 }
 @media (max-width: 630px) {
-  /* line 22, ../components/sass/_responsive.scss */
+  /* line 26, ../components/sass/_responsive.scss */
   .landing-title-container {
     width: 100%;
     height: inherit;
     min-height: 200px;
   }
-  /* line 27, ../components/sass/_responsive.scss */
+  /* line 31, ../components/sass/_responsive.scss */
   .landing-title-container h1 {
     width: 100%;
     padding-top: 2vh;
     font-size: 60px;
   }
-  /* line 32, ../components/sass/_responsive.scss */
+  /* line 36, ../components/sass/_responsive.scss */
   .landing-title-container .landing-play-btn-container {
     width: 100%;
     height: 24vh;
   }
 
-  /* line 38, ../components/sass/_responsive.scss */
+  /* line 42, ../components/sass/_responsive.scss */
   .mixer-container {
     min-width: 100%;
     margin-right: 0px;
@@ -582,7 +639,7 @@ nav h1 {
   }
 }
 @media (max-width: 450px) {
-  /* line 48, ../components/sass/_responsive.scss */
+  /* line 52, ../components/sass/_responsive.scss */
   .filter-section .label-left, .filter-section .label-right {
     opacity: 0;
   }
