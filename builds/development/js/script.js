@@ -36,21 +36,24 @@ var playingAllLoop1 = false,
   playingAllLoop3 = false;
 
 var gainNodeDrums,
-  gainNodeHH,
-  gainNodeBass,
-  gainNodeKeys,
-  panNodeDrums,
-  panNodeHH,
-  panNodeBass,
-  panNodeKeys,
-  filterLPDrums,
-  filterHPDrums,
-  filterLPHH,
-  filterHPHH,
-  filterLPBass,
-  filterHPBass,
-  filterLPKeys,
-  filterHPKeys;
+    gainNodeHH,
+    gainNodeBass,
+    gainNodeKeys,
+    panNodeDrums,
+    panNodeHH,
+    panNodeBass,
+    panNodeKeys,
+    filterLPDrums,
+    filterHPDrums,
+    filterLPHH,
+    filterHPHH,
+    filterLPBass,
+    filterHPBass,
+    filterLPKeys,
+    filterHPKeys,
+    analyserNode,
+    freqBufferLength,
+    frequencyData;
 
 
 //-----------------
@@ -92,6 +95,7 @@ audio.play = function (n) {
       filterLPDrums.connect(filterHPDrums);
       filterHPDrums.connect(gainNodeDrums);
       gainNodeDrums.connect(panNodeDrums);
+      panNodeDrums.connect(analyser);
       panNodeDrums.connect(audio.context.destination);
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
       filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
@@ -104,6 +108,7 @@ audio.play = function (n) {
       filterLPHH.connect(filterHPHH);
       filterHPHH.connect(gainNodeHH);
       gainNodeHH.connect(panNodeHH);
+      gainNodeHH.connect(analyser);
       panNodeHH.connect(audio.context.destination);
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
       filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
@@ -116,6 +121,7 @@ audio.play = function (n) {
       filterLPBass.connect(filterHPBass);
       filterHPBass.connect(gainNodeBass);
       gainNodeBass.connect(panNodeBass);
+      gainNodeBass.connect(analyser);
       panNodeBass.connect(audio.context.destination);
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
       filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
@@ -128,6 +134,7 @@ audio.play = function (n) {
       filterLPKeys.connect(filterHPKeys);
       filterHPKeys.connect(gainNodeKeys);
       gainNodeKeys.connect(panNodeKeys);
+      gainNodeKeys.connect(analyser);
       panNodeKeys.connect(audio.context.destination);
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
       filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
@@ -230,6 +237,10 @@ if (audio.proceed) {
   filterLPKeys.type = 'lowpass';
   filterHPKeys = audio.context.createBiquadFilter();
   filterHPKeys.type = 'highpass';
+  
+  analyser = audio.context.createAnalyser();
+  freqBufferLength = analyser.frequencyBinCount;
+  frequencyData = new Uint8Array(freqBufferLength);
 
   //---------------
   // Compatibility
@@ -393,6 +404,8 @@ function highlightLoops() {
     document.getElementById('mixer').classList.remove("mixer-off");
     document.getElementById('mixer').className += " mixer-off";
     
+    document.querySelector('canvas').style.opacity = "0";
+    
   } else {
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
@@ -400,6 +413,8 @@ function highlightLoops() {
     
     document.getElementById('mixer').classList.remove("mixer-off");
     audioPlaying = true;
+    
+    document.querySelector('canvas').style.opacity = "1";
   }
 
 
@@ -409,6 +424,8 @@ function highlightLoops() {
 
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
+  
+  
   
   if(document.getElementById('stop-all').classList.contains("pause-btn")) {
     audioPlaying = true;
@@ -432,6 +449,8 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
       document.getElementById('main-play-pause').classList.remove("play-btn");
     }
     
+    document.querySelector('canvas').style.opacity = "1";
+    
   } else {
     for (var n = 0; n < audio.files.length; n++) {
       audio.stop(n + 1);
@@ -445,6 +464,7 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
     }
     
     audioPlaying = false;
+    document.querySelector('canvas').style.opacity = "0";
   }
   
   
@@ -672,7 +692,7 @@ for (i = 0; i < hpfSections.length; ++i) {
 var panSections = document.querySelectorAll(".pan");
 
 for (i = 0; i < panSections.length; ++i) {
-  showHint(panSections[i], "<b>Stereo Pan</b><br>Moves sound left and right within stereo field.");
+  showHint(panSections[i], "<b>Stereo Panner</b><br>Moves sound left and right within stereo field.");
 }
 
 var iconSections = document.querySelectorAll("img");
@@ -681,8 +701,70 @@ for (i = 0; i < iconSections.length; ++i) {
   showHint(iconSections[i], iconSections[i].alt);
 }
 
+var loopBtnLarges = document.querySelectorAll(".loop-btn-large");
+
+for (i = 0; i < loopBtnLarges.length; ++i) {
+  showHint(loopBtnLarges[i], loopBtnLarges[i].title);
+}
+
+var loopBtnSmalls = document.querySelectorAll(".loop-btn-small");
+
+for (i = 0; i < loopBtnSmalls.length; ++i) {
+  showHint(loopBtnSmalls[i], loopBtnSmalls[i].title);
+}
 
 
+
+
+
+
+//==================
+// Visual
+//==================
+
+function Render() {
+
+  var canvas = document.querySelector('canvas');
+  var canvasContext = canvas.getContext('2d');
+
+  var WIDTH = canvas.width;
+  var HEIGHT = canvas.height;
+
+  function draw() {
+    requestAnimationFrame(draw);
+
+    analyser.getByteTimeDomainData(frequencyData);
+    canvasContext.fillStyle = 'rgba(191,199,199,0.8)';
+    canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
+    canvasContext.lineWidth = 1;
+    canvasContext.strokeStyle = '#222';
+    canvasContext.beginPath();
+
+    var sliceWidth = WIDTH * .8 / freqBufferLength;
+    var x = 0;
+
+    for (var i = 0; i < freqBufferLength; i++) {
+
+      var v = frequencyData[i] / 16;
+      var y = v * HEIGHT / 16;
+
+      if (i === 0) {
+        canvasContext.moveTo(x, 75);
+        x = WIDTH / 9;
+      } else {
+        canvasContext.lineTo(x, y);
+      }
+
+      x += sliceWidth;
+    }
+
+    canvasContext.lineTo(canvas.width, canvas.height / 2);
+    canvasContext.stroke();
+  }
+  draw();
+}
+
+Render();
 
 
 

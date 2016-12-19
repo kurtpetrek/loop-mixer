@@ -585,6 +585,18 @@ nav h1 {
   border-bottom: 10px solid #99503c;
 }
 
+/* line 319, ../components/sass/_base.scss */
+canvas {
+  width: 112%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 56%;
+  top: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: .5s;
+}
+
 @media (max-width: 920px) {
   /* line 2, ../components/sass/_responsive.scss */
   .landing-title-container {
@@ -610,27 +622,33 @@ nav h1 {
     border-top: 1vh solid #99503c;
     border-radius: 10% 10%;
   }
+
+  /* line 24, ../components/sass/_responsive.scss */
+  canvas {
+    width: 100%;
+    left: 50%;
+  }
 }
 @media (max-width: 630px) {
-  /* line 26, ../components/sass/_responsive.scss */
+  /* line 31, ../components/sass/_responsive.scss */
   .landing-title-container {
     width: 100%;
     height: inherit;
     min-height: 200px;
   }
-  /* line 31, ../components/sass/_responsive.scss */
+  /* line 36, ../components/sass/_responsive.scss */
   .landing-title-container h1 {
     width: 100%;
     padding-top: 2vh;
     font-size: 60px;
   }
-  /* line 36, ../components/sass/_responsive.scss */
+  /* line 41, ../components/sass/_responsive.scss */
   .landing-title-container .landing-play-btn-container {
     width: 100%;
     height: 24vh;
   }
 
-  /* line 42, ../components/sass/_responsive.scss */
+  /* line 47, ../components/sass/_responsive.scss */
   .mixer-container {
     min-width: 100%;
     margin-right: 0px;
@@ -639,7 +657,7 @@ nav h1 {
   }
 }
 @media (max-width: 450px) {
-  /* line 52, ../components/sass/_responsive.scss */
+  /* line 57, ../components/sass/_responsive.scss */
   .filter-section .label-left, .filter-section .label-right {
     opacity: 0;
   }

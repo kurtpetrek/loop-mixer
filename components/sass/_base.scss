@@ -316,6 +316,17 @@ nav {
 }
 
 
+canvas {
+  width: 112%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 56%;
+  top: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: .5s;
+}
+
 
 
 
