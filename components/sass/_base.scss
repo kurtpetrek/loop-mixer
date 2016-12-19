@@ -7,7 +7,7 @@
 //================
 
 nav {
-  width: 100%;
+  width: 100vw;
   height: 45px;
   background: $glbl-clr-5;
   font-family: $font;
@@ -33,27 +33,34 @@ nav {
   width: 33%;
   float: left;
   
+  
   h1 {
     font-family: $font;
-    font-size: 15vh;
+    @include responsive-font(15vh, 50px, 80px);
     text-align: center;
     padding-top: 10vh;
     color: $glbl-clr-5;
     -webkit-text-stroke: .15vw $glbl-clr-6;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    float: left;
+    width: 100%;
   }
 }
+
+
 
 .landing-play-btn-container {
   height: 50vh;
   width: 100%;
   position: relative;
+  float: left;
   
   button {
     display: none;
   }
   
   .landing-play-btn {
+    
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
