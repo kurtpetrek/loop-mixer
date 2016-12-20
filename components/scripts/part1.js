@@ -28,7 +28,9 @@ var audio = {
   source_once: {}
 };
 
-var audioPlaying = false;
+var audioPlaying = false,
+    appRunning = false,
+    stereoSound = false;;
 
 var playingAllLoop1 = false,
   playingAllLoop2 = false,
@@ -93,52 +95,79 @@ audio.play = function (n) {
       audio.source_loop[n].connect(filterLPDrums);
       filterLPDrums.connect(filterHPDrums);
       filterHPDrums.connect(gainNodeDrums);
-      gainNodeDrums.connect(panNodeDrums);
-      panNodeDrums.connect(analyser);
-      panNodeDrums.connect(audio.context.destination);
+      gainNodeDrums.connect(analyser);
+      
+      if(stereoSound) {
+        gainNodeDrums.connect(panNodeDrums);
+        panNodeDrums.connect(audio.context.destination);
+        panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
+      } else { 
+        gainNodeDrums.connect(audio.context.destination);
+      }
+
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
       filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
       filterHPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-hi-pass').value));
-      panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
+      
     }
 
     if (n === 4 || n === 5 || n === 6) {
       audio.source_loop[n].connect(filterLPHH);
       filterLPHH.connect(filterHPHH);
       filterHPHH.connect(gainNodeHH);
-      gainNodeHH.connect(panNodeHH);
       gainNodeHH.connect(analyser);
-      panNodeHH.connect(audio.context.destination);
+      
+      if(stereoSound){
+        gainNodeHH.connect(panNodeHH);
+        panNodeHH.connect(audio.context.destination);
+        panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
+      } else {
+        gainNodeHH.connect(audio.context.destination);
+      }
+      
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
       filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
       filterHPHH.frequency.value = logslider(parseInt(document.getElementById('hh-hi-pass').value));
-      panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
+      
     }
 
     if (n === 7 || n === 8 || n === 9) {
       audio.source_loop[n].connect(filterLPBass);
       filterLPBass.connect(filterHPBass);
       filterHPBass.connect(gainNodeBass);
-      gainNodeBass.connect(panNodeBass);
       gainNodeBass.connect(analyser);
-      panNodeBass.connect(audio.context.destination);
+      
+      if(stereoSound){
+        gainNodeBass.connect(panNodeBass);
+        panNodeBass.connect(audio.context.destination);
+        panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
+      } else {
+        gainNodeBass.connect(audio.context.destination);
+      }
+      
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
       filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
       filterHPBass.frequency.value = logslider(parseInt(document.getElementById('bass-hi-pass').value));
-      panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
+      
     }
 
     if (n === 10 || n === 11 || n === 12) {
       audio.source_loop[n].connect(filterLPKeys);
       filterLPKeys.connect(filterHPKeys);
       filterHPKeys.connect(gainNodeKeys);
-      gainNodeKeys.connect(panNodeKeys);
       gainNodeKeys.connect(analyser);
-      panNodeKeys.connect(audio.context.destination);
+      
+      if(stereoSound) {
+        gainNodeKeys.connect(panNodeKeys);
+        panNodeKeys.connect(audio.context.destination);
+        panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
+      } else {
+        gainNodeKeys.connect(audio.context.destination);
+      }
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
       filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
       filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
-      panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
+      
     }
 
     //     audio.source_loop[n].connect(audio.context.destination);
@@ -153,11 +182,60 @@ audio.play = function (n) {
       */
       audio.source_once[n] = audio.context.createBufferSource();
       audio.source_once[n].buffer = audio.buffer[n];
+      
+      if (n === 1 || n === 2 || n === 3) {
+      audio.source_once[n].connect(filterLPDrums);
+      filterLPDrums.connect(filterHPDrums);
+      filterHPDrums.connect(gainNodeDrums);
+      gainNodeDrums.connect(panNodeDrums);
+      panNodeDrums.connect(analyser);
+      panNodeDrums.connect(audio.context.destination);
+      gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
+      filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
+      filterHPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-hi-pass').value));
+      panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
+    }
 
+    if (n === 4 || n === 5 || n === 6) {
+      audio.source_once[n].connect(filterLPHH);
+      filterLPHH.connect(filterHPHH);
+      filterHPHH.connect(gainNodeHH);
+      gainNodeHH.connect(panNodeHH);
+      gainNodeHH.connect(analyser);
+      panNodeHH.connect(audio.context.destination);
+      gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
+      filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
+      filterHPHH.frequency.value = logslider(parseInt(document.getElementById('hh-hi-pass').value));
+      panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
+    }
 
-      audio.source_once[n].connect(gainNodeDrums);
-      gainNodeDrums.connect(audio.context.destination);
+    if (n === 7 || n === 8 || n === 9) {
+      audio.source_once[n].connect(filterLPBass);
+      filterLPBass.connect(filterHPBass);
+      filterHPBass.connect(gainNodeBass);
+      gainNodeBass.connect(panNodeBass);
+      gainNodeBass.connect(analyser);
+      panNodeBass.connect(audio.context.destination);
+      gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
+      filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
+      filterHPBass.frequency.value = logslider(parseInt(document.getElementById('bass-hi-pass').value));
+      panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
+    }
 
+    if (n === 10 || n === 11 || n === 12) {
+      audio.source_once[n].connect(filterLPKeys);
+      filterLPKeys.connect(filterHPKeys);
+      filterHPKeys.connect(gainNodeKeys);
+      gainNodeKeys.connect(panNodeKeys);
+      gainNodeKeys.connect(analyser);
+      panNodeKeys.connect(audio.context.destination);
+      gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
+      filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
+      filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
+      panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
+    }
+
+      
       audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset); // currentTime, offset, duration
 
       /*
@@ -192,6 +270,8 @@ audio.stop = function (n) {
 //-----------------------------
 // Check Web Audio API Support
 //-----------------------------
+
+function appStart() {
 try {
   // More info at http://caniuse.com/#feat=audio-api
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -205,16 +285,21 @@ try {
 }
 
 if (audio.proceed) {
-
+  
   gainNodeDrums = audio.context.createGain();
   gainNodeHH = audio.context.createGain();
   gainNodeBass = audio.context.createGain();
   gainNodeKeys = audio.context.createGain();
+  
+  if(typeof audio.context.createStereoPanner === "function"){
+    stereoSound = true;
+    panNodeDrums = audio.context.createStereoPanner();
+    panNodeHH = audio.context.createStereoPanner();
+    panNodeBass = audio.context.createStereoPanner();
+    panNodeKeys = audio.context.createStereoPanner();
+  }
 
-  panNodeDrums = audio.context.createStereoPanner();
-  panNodeHH = audio.context.createStereoPanner();
-  panNodeBass = audio.context.createStereoPanner();
-  panNodeKeys = audio.context.createStereoPanner();
+  
 
 
   filterLPDrums = audio.context.createBiquadFilter();
@@ -270,46 +355,52 @@ if (audio.proceed) {
       var req = new XMLHttpRequest();
       req.open('GET', audio.files[i - 1], true); // array starts with 0 hence the -1
       req.responseType = 'arraybuffer';
-      req.onload = function () {
-        audio.context.decodeAudioData(
-          req.response,
-          function (buffer) {
-            audio.buffer[i] = buffer;
-            audio.source_loop[i] = {};
-            var button = document.getElementById('button-loop-' + i);
+      req.onreadystatechange = function(){
+        req.onload = function () {
+          audio.context.decodeAudioData(
+            req.response,
+            function (buffer) {
+              audio.buffer[i] = buffer;
+              audio.source_loop[i] = {};
+              var button = document.getElementById('button-loop-' + i);
 
-            if (i == 1 || i == 4 || i == 7 || i == 10) {
-              var op1 = i + 1;
-              var op2 = i + 2;
-            } else if (i == 2 || i == 5 || i == 8 || i == 11) {
-              var op1 = i - 1;
-              var op2 = i + 1;
-            } else if (i == 3 || i == 6 || i == 9 || i == 12) {
-              var op1 = i - 1;
-              var op2 = i - 2;
+              if (i == 1 || i == 4 || i == 7 || i == 10) {
+                var op1 = i + 1;
+                var op2 = i + 2;
+              } else if (i == 2 || i == 5 || i == 8 || i == 11) {
+                var op1 = i - 1;
+                var op2 = i + 1;
+              } else if (i == 3 || i == 6 || i == 9 || i == 12) {
+                var op1 = i - 1;
+                var op2 = i - 2;
+              }
+
+
+              button.addEventListener('click', function (e) {
+                e.preventDefault();
+                audio.play(parseInt(this.value));
+                audio.stop(op1);
+                audio.stop(op2);
+                playingAllLoop1 = false;
+                playingAllLoop2 = false;
+                playingAllLoop3 = false;
+                highlightLoops();
+              });
+              appRunning = true;
+            },
+            function () {
+              console.log('Error decoding audio "' + audio.files[i - 1] + '".');
             }
-
-
-            button.addEventListener('click', function (e) {
-              e.preventDefault();
-              audio.play(parseInt(this.value));
-              audio.stop(op1);
-              audio.stop(op2);
-              playingAllLoop1 = false;
-              playingAllLoop2 = false;
-              playingAllLoop3 = false;
-              highlightLoops();
-            });
-          },
-          function () {
-            console.log('Error decoding audio "' + audio.files[i - 1] + '".');
-          }
-        );
-      };
+          );
+        };
+      }
       req.send();
     })();
   }
 }
+}
+
+appStart();
 
 
 function highlightLoops() {
@@ -424,13 +515,16 @@ function highlightLoops() {
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
   
-  
+  if(!appRunning) {
+    appStart();
+  }
   
   if(document.getElementById('stop-all').classList.contains("pause-btn")) {
     audioPlaying = true;
   }
   
   if (!audioPlaying) {
+    
     for (var n = 0; n < audio.files.length; n++) {
       audio.stop(n + 1);
     }
@@ -702,15 +796,15 @@ for (i = 0; i < iconSections.length; ++i) {
 
 var loopBtnLarges = document.querySelectorAll(".loop-btn-large");
 
-for (i = 0; i < loopBtnLarges.length; ++i) {
-  showHint(loopBtnLarges[i], loopBtnLarges[i].title);
-}
-
-var loopBtnSmalls = document.querySelectorAll(".loop-btn-small");
-
-for (i = 0; i < loopBtnSmalls.length; ++i) {
-  showHint(loopBtnSmalls[i], loopBtnSmalls[i].title);
-}
+//for (i = 0; i < loopBtnLarges.length; ++i) {
+//  showHint(loopBtnLarges[i], loopBtnLarges[i].title);
+//}
+//
+//var loopBtnSmalls = document.querySelectorAll(".loop-btn-small");
+//
+//for (i = 0; i < loopBtnSmalls.length; ++i) {
+//  showHint(loopBtnSmalls[i], loopBtnSmalls[i].title);
+//}
 
 
 
@@ -733,7 +827,7 @@ function Render() {
     requestAnimationFrame(draw);
 
     analyser.getByteTimeDomainData(frequencyData);
-    canvasContext.fillStyle = 'rgba(191,199,199,0.8)';
+    canvasContext.fillStyle = '#BFC7C7';
     canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     canvasContext.lineWidth = 1;
     canvasContext.strokeStyle = '#222';

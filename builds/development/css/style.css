@@ -299,7 +299,7 @@ nav h1 {
 .landing-title-container {
   height: calc(100vh - 45px);
   min-height: 400px;
-  width: 33%;
+  width: 36%;
   float: left;
 }
 /* line 40, ../components/sass/_base.scss */
@@ -587,10 +587,10 @@ nav h1 {
 
 /* line 319, ../components/sass/_base.scss */
 canvas {
-  width: 112%;
+  width: 105%;
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 56%;
+  left: 51%;
   top: 50%;
   z-index: -1;
   opacity: 0;
