@@ -15,6 +15,7 @@ nav {
   background: $glbl-clr-5;
   font-family: $font;
   position: relative;
+  z-index: 1;
   
   h1 {
     color: $glbl-clr-4;
@@ -349,11 +350,5 @@ canvas {
 // utility classes Styles
 //================
 
-.loader {
-  max-width: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-}
+
 

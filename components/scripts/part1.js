@@ -29,33 +29,33 @@ var audio = {
 };
 
 var audioPlaying = false,
-    appRunning = false,
-    stereoSound = false,
-    mobileLoaded = false;
+  appRunning = false,
+  stereoSound = false,
+  mobileLoaded = false;
 
 var playingAllLoop1 = false,
   playingAllLoop2 = false,
   playingAllLoop3 = false;
 
 var gainNodeDrums,
-    gainNodeHH,
-    gainNodeBass,
-    gainNodeKeys,
-    panNodeDrums,
-    panNodeHH,
-    panNodeBass,
-    panNodeKeys,
-    filterLPDrums,
-    filterHPDrums,
-    filterLPHH,
-    filterHPHH,
-    filterLPBass,
-    filterHPBass,
-    filterLPKeys,
-    filterHPKeys,
-    analyserNode,
-    freqBufferLength,
-    frequencyData;
+  gainNodeHH,
+  gainNodeBass,
+  gainNodeKeys,
+  panNodeDrums,
+  panNodeHH,
+  panNodeBass,
+  panNodeKeys,
+  filterLPDrums,
+  filterHPDrums,
+  filterLPHH,
+  filterHPHH,
+  filterLPBass,
+  filterHPBass,
+  filterLPKeys,
+  filterHPKeys,
+  analyserNode,
+  freqBufferLength,
+  frequencyData;
 
 
 //-----------------
@@ -97,19 +97,19 @@ audio.play = function (n) {
       filterLPDrums.connect(filterHPDrums);
       filterHPDrums.connect(gainNodeDrums);
       gainNodeDrums.connect(analyser);
-      
-      if(stereoSound) {
+
+      if (stereoSound) {
         gainNodeDrums.connect(panNodeDrums);
         panNodeDrums.connect(audio.context.destination);
         panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
-      } else { 
+      } else {
         gainNodeDrums.connect(audio.context.destination);
       }
 
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
       filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
       filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
-      
+
     }
 
     if (n === 4 || n === 5 || n === 6) {
@@ -117,19 +117,19 @@ audio.play = function (n) {
       filterLPHH.connect(filterHPHH);
       filterHPHH.connect(gainNodeHH);
       gainNodeHH.connect(analyser);
-      
-      if(stereoSound){
+
+      if (stereoSound) {
         gainNodeHH.connect(panNodeHH);
         panNodeHH.connect(audio.context.destination);
         panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
       } else {
         gainNodeHH.connect(audio.context.destination);
       }
-      
+
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
       filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
       filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
-      
+
     }
 
     if (n === 7 || n === 8 || n === 9) {
@@ -137,19 +137,19 @@ audio.play = function (n) {
       filterLPBass.connect(filterHPBass);
       filterHPBass.connect(gainNodeBass);
       gainNodeBass.connect(analyser);
-      
-      if(stereoSound){
+
+      if (stereoSound) {
         gainNodeBass.connect(panNodeBass);
         panNodeBass.connect(audio.context.destination);
         panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
       } else {
         gainNodeBass.connect(audio.context.destination);
       }
-      
+
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
       filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
       filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
-      
+
     }
 
     if (n === 10 || n === 11 || n === 12) {
@@ -157,8 +157,8 @@ audio.play = function (n) {
       filterLPKeys.connect(filterHPKeys);
       filterHPKeys.connect(gainNodeKeys);
       gainNodeKeys.connect(analyser);
-      
-      if(stereoSound) {
+
+      if (stereoSound) {
         gainNodeKeys.connect(panNodeKeys);
         panNodeKeys.connect(audio.context.destination);
         panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
@@ -168,7 +168,7 @@ audio.play = function (n) {
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
       filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
       filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
-      
+
     }
 
     //     audio.source_loop[n].connect(audio.context.destination);
@@ -183,60 +183,60 @@ audio.play = function (n) {
       */
       audio.source_once[n] = audio.context.createBufferSource();
       audio.source_once[n].buffer = audio.buffer[n];
-      
+
       if (n === 1 || n === 2 || n === 3) {
-      audio.source_once[n].connect(filterLPDrums);
-      filterLPDrums.connect(filterHPDrums);
-      filterHPDrums.connect(gainNodeDrums);
-      gainNodeDrums.connect(panNodeDrums);
-      panNodeDrums.connect(analyser);
-      panNodeDrums.connect(audio.context.destination);
-      gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
-      filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
-      filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
-      panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
-    }
+        audio.source_once[n].connect(filterLPDrums);
+        filterLPDrums.connect(filterHPDrums);
+        filterHPDrums.connect(gainNodeDrums);
+        gainNodeDrums.connect(panNodeDrums);
+        panNodeDrums.connect(analyser);
+        panNodeDrums.connect(audio.context.destination);
+        gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
+        filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
+        filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
+        panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
+      }
 
-    if (n === 4 || n === 5 || n === 6) {
-      audio.source_once[n].connect(filterLPHH);
-      filterLPHH.connect(filterHPHH);
-      filterHPHH.connect(gainNodeHH);
-      gainNodeHH.connect(panNodeHH);
-      gainNodeHH.connect(analyser);
-      panNodeHH.connect(audio.context.destination);
-      gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
-      filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
-      filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
-      panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
-    }
+      if (n === 4 || n === 5 || n === 6) {
+        audio.source_once[n].connect(filterLPHH);
+        filterLPHH.connect(filterHPHH);
+        filterHPHH.connect(gainNodeHH);
+        gainNodeHH.connect(panNodeHH);
+        gainNodeHH.connect(analyser);
+        panNodeHH.connect(audio.context.destination);
+        gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
+        filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
+        filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
+        panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
+      }
 
-    if (n === 7 || n === 8 || n === 9) {
-      audio.source_once[n].connect(filterLPBass);
-      filterLPBass.connect(filterHPBass);
-      filterHPBass.connect(gainNodeBass);
-      gainNodeBass.connect(panNodeBass);
-      gainNodeBass.connect(analyser);
-      panNodeBass.connect(audio.context.destination);
-      gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
-      filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
-      filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
-      panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
-    }
+      if (n === 7 || n === 8 || n === 9) {
+        audio.source_once[n].connect(filterLPBass);
+        filterLPBass.connect(filterHPBass);
+        filterHPBass.connect(gainNodeBass);
+        gainNodeBass.connect(panNodeBass);
+        gainNodeBass.connect(analyser);
+        panNodeBass.connect(audio.context.destination);
+        gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
+        filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
+        filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
+        panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
+      }
 
-    if (n === 10 || n === 11 || n === 12) {
-      audio.source_once[n].connect(filterLPKeys);
-      filterLPKeys.connect(filterHPKeys);
-      filterHPKeys.connect(gainNodeKeys);
-      gainNodeKeys.connect(panNodeKeys);
-      gainNodeKeys.connect(analyser);
-      panNodeKeys.connect(audio.context.destination);
-      gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
-      filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
-      filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
-      panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
-    }
+      if (n === 10 || n === 11 || n === 12) {
+        audio.source_once[n].connect(filterLPKeys);
+        filterLPKeys.connect(filterHPKeys);
+        filterHPKeys.connect(gainNodeKeys);
+        gainNodeKeys.connect(panNodeKeys);
+        gainNodeKeys.connect(analyser);
+        panNodeKeys.connect(audio.context.destination);
+        gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
+        filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
+        filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
+        panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
+      }
 
-      
+
       audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset); // currentTime, offset, duration
 
       /*
@@ -248,16 +248,28 @@ audio.play = function (n) {
       // Now queue up our looping sound to start immediatly after the source_once audio plays.
       audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
     } else {
-        audio.source_loop[n][audio.compatibility.start](0, offset);
+      try{
+         audio.source_loop[n][audio.compatibility.start](0, offset);
+      } catch(e){
+        var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+                 navigator.userAgent && !navigator.userAgent.match('CriOS');
+        if(isSafari){
+          window.location.reload(false);
+        }
+      }
 
     }
-
+    
     audio.source_loop[n]._playing = true;
+    
+    
+    
+    
   }
-  
 };
 
 audio.stop = function (n) {
+
   if (audio.source_loop[n]._playing) {
     audio.source_loop[n][audio.compatibility.stop](0);
     audio.source_loop[n]._playing = false;
@@ -266,7 +278,7 @@ audio.stop = function (n) {
       audio.source_once[n][audio.compatibility.stop](0);
     }
   }
-  
+
 };
 
 //-----------------------------
@@ -274,196 +286,185 @@ audio.stop = function (n) {
 //-----------------------------
 
 function appStart() {
-try {
-  // More info at http://caniuse.com/#feat=audio-api
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  audio.context = new window.AudioContext();
+  try {
+    // More info at http://caniuse.com/#feat=audio-api
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    audio.context = new window.AudioContext();
 
 
 
-} catch (e) {
-  audio.proceed = false;
-  alert('Web Audio API not supported in this browser.');
-}
-
-if (audio.proceed) {
-  
-  gainNodeDrums = audio.context.createGain();
-  gainNodeHH = audio.context.createGain();
-  gainNodeBass = audio.context.createGain();
-  gainNodeKeys = audio.context.createGain();
-  
-  if(typeof audio.context.createStereoPanner === "function"){
-    stereoSound = true;
-    panNodeDrums = audio.context.createStereoPanner();
-    panNodeHH = audio.context.createStereoPanner();
-    panNodeBass = audio.context.createStereoPanner();
-    panNodeKeys = audio.context.createStereoPanner();
+  } catch (e) {
+    audio.proceed = false;
+    alert('Web Audio API not supported in this browser.');
   }
 
-  
+  if (audio.proceed) {
 
+    gainNodeDrums = audio.context.createGain();
+    gainNodeHH = audio.context.createGain();
+    gainNodeBass = audio.context.createGain();
+    gainNodeKeys = audio.context.createGain();
 
-  filterLPDrums = audio.context.createBiquadFilter();
-  filterLPDrums.type = 'lowpass';
-  filterHPDrums = audio.context.createBiquadFilter();
-  filterHPDrums.type = 'highpass';
-
-  filterLPHH = audio.context.createBiquadFilter();
-  filterLPHH.type = 'lowpass';
-  filterHPHH = audio.context.createBiquadFilter();
-  filterHPHH.type = 'highpass';
-
-  filterLPBass = audio.context.createBiquadFilter();
-  filterLPBass.type = 'lowpass';
-  filterHPBass = audio.context.createBiquadFilter();
-  filterHPBass.type = 'highpass';
-
-  filterLPKeys = audio.context.createBiquadFilter();
-  filterLPKeys.type = 'lowpass';
-  filterHPKeys = audio.context.createBiquadFilter();
-  filterHPKeys.type = 'highpass';
-  
-  analyser = audio.context.createAnalyser();
-  freqBufferLength = analyser.frequencyBinCount;
-  frequencyData = new Uint8Array(freqBufferLength);
-
-  //---------------
-  // Compatibility
-  //---------------
-  (function () {
-    var start = 'start',
-      stop = 'stop',
-      buffer = audio.context.createBufferSource();
-
-    if (typeof buffer.start !== 'function') {
-      start = 'noteOn';
+    if (typeof audio.context.createStereoPanner === "function") {
+      stereoSound = true;
+      panNodeDrums = audio.context.createStereoPanner();
+      panNodeHH = audio.context.createStereoPanner();
+      panNodeBass = audio.context.createStereoPanner();
+      panNodeKeys = audio.context.createStereoPanner();
     }
-    audio.compatibility.start = start;
 
-    if (typeof buffer.stop !== 'function') {
-      stop = 'noteOff';
-    }
-    audio.compatibility.stop = stop;
-  })();
 
-  //-------------------------------
-  // Setup Audio Files and Buttons
-  //-------------------------------
-  for (var a in audio.files) {
+
+
+    filterLPDrums = audio.context.createBiquadFilter();
+    filterLPDrums.type = 'lowpass';
+    filterHPDrums = audio.context.createBiquadFilter();
+    filterHPDrums.type = 'highpass';
+
+    filterLPHH = audio.context.createBiquadFilter();
+    filterLPHH.type = 'lowpass';
+    filterHPHH = audio.context.createBiquadFilter();
+    filterHPHH.type = 'highpass';
+
+    filterLPBass = audio.context.createBiquadFilter();
+    filterLPBass.type = 'lowpass';
+    filterHPBass = audio.context.createBiquadFilter();
+    filterHPBass.type = 'highpass';
+
+    filterLPKeys = audio.context.createBiquadFilter();
+    filterLPKeys.type = 'lowpass';
+    filterHPKeys = audio.context.createBiquadFilter();
+    filterHPKeys.type = 'highpass';
+
+    analyser = audio.context.createAnalyser();
+    freqBufferLength = analyser.frequencyBinCount;
+    frequencyData = new Uint8Array(freqBufferLength);
+
+    //---------------
+    // Compatibility
+    //---------------
     (function () {
-      var i = parseInt(a) + 1;
-      var loaderImg;
-    
+      var start = 'start',
+        stop = 'stop',
+        buffer = audio.context.createBufferSource();
 
-      var req = new XMLHttpRequest();
-      req.open('GET', audio.files[i - 1], true); // array starts with 0 hence the -1
-      req.responseType = 'arraybuffer';
-      req.onreadystatechange = function(){
-        if(this.readyState === 4) {
-        req.onload = function () {  
-          audio.context.decodeAudioData(
-            req.response,
-            function (buffer) {
-              audio.buffer[i] = buffer;
-              audio.source_loop[i] = {};
-              
-//              audio.play(i);
-//              audio.stop(i);
-              
-              fixLoadBug(i);
-              
-              
-              
-              var button = document.getElementById('button-loop-' + i);
-
-              if (i == 1 || i == 4 || i == 7 || i == 10) {
-                var op1 = i + 1;
-                var op2 = i + 2;
-              } else if (i == 2 || i == 5 || i == 8 || i == 11) {
-                var op1 = i - 1;
-                var op2 = i + 1;
-              } else if (i == 3 || i == 6 || i == 9 || i == 12) {
-                var op1 = i - 1;
-                var op2 = i - 2;
-              }
-              
-
-              button.addEventListener('click', function (e) {
-                e.preventDefault();
-                audio.play(parseInt(this.value));
-                audio.stop(op1);
-                audio.stop(op2);
-                playingAllLoop1 = false;
-                playingAllLoop2 = false;
-                playingAllLoop3 = false;
-                highlightLoops();
-              });
-              appRunning = true;
-            },
-            function () {
-              console.log('Error decoding audio "' + audio.files[i - 1] + '".');
-            }
-          );
-        };
-        }
-        
+      if (typeof buffer.start !== 'function') {
+        start = 'noteOn';
       }
-      req.send();
-      
+      audio.compatibility.start = start;
+
+      if (typeof buffer.stop !== 'function') {
+        stop = 'noteOff';
+      }
+      audio.compatibility.stop = stop;
     })();
+
+    //-------------------------------
+    // Setup Audio Files and Buttons
+    //-------------------------------
+    for (var a in audio.files) {
+      (function () {
+        var i = parseInt(a) + 1;
+        var loaderImg;
+
+
+        var req = new XMLHttpRequest();
+        req.open('GET', audio.files[i - 1], true); // array starts with 0 hence the -1
+        req.responseType = 'arraybuffer';
+        
+        req.onload = function () {
+              audio.context.decodeAudioData(
+                req.response,
+                function (buffer) {
+                  audio.buffer[i] = buffer;
+                  audio.source_loop[i] = {};
+
+
+                  var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+                  if (!isFirefox) {
+//                    fixLoadBug(i);
+                  }
+
+
+
+
+                  var button = document.getElementById('button-loop-' + i);
+
+                  if (i == 1 || i == 4 || i == 7 || i == 10) {
+                    var op1 = i + 1;
+                    var op2 = i + 2;
+                  } else if (i == 2 || i == 5 || i == 8 || i == 11) {
+                    var op1 = i - 1;
+                    var op2 = i + 1;
+                  } else if (i == 3 || i == 6 || i == 9 || i == 12) {
+                    var op1 = i - 1;
+                    var op2 = i - 2;
+                  }
+
+
+                  button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    audio.play(parseInt(this.value));
+                    audio.stop(op1);
+                    audio.stop(op2);
+                    playingAllLoop1 = false;
+                    playingAllLoop2 = false;
+                    playingAllLoop3 = false;
+                    highlightLoops();
+                  });
+                  appRunning = true;
+                },
+                function () {
+                  console.log('Error decoding audio "' + audio.files[i - 1] + '".');
+                }
+              );
+            };
+          
+        req.send();
+
+      })();
+    }
   }
 }
-}
 
-if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
   appStart();
-} 
+}
 
 
 
 
 function fixLoadBug(index) {
-    var loopCounter = 0;
-    for(var x = 1; x < 12; x++){
-        if(typeof audio.source_loop[x] === "undefined" || typeof audio.source_loop[x].loop === "boolean"){
-          loopCounter++;
-        }
+  try {
+
+    if (typeof audio.source_loop[index].loop == "undefined") {
+      audio.play(index);
+      audio.stop(index);
     }
-  
-    try {
-      
-      if(typeof audio.source_loop[index].loop == "undefined"){
-          audio.play(index);
-          audio.stop(index);
-          
-        }
-      
-      
-  }
-  catch(err) {
-      setTimeout(function(){
-        fixLoadBug(index);
-      }, 2000);
+
+  } catch (err) {
+    setTimeout(function () {
+      fixLoadBug(index);
+    }, 2000);
   }
 }
 
 function highlightLoops() {
   var loop1 = 0,
-      loop2 = 0,
-      loop3 = 0,
-      playing = 0;
-    
+    loop2 = 0,
+    loop3 = 0,
+    playing = 0;
+
 
   for (var x = 1; x < audio.files.length + 1; x++) {
 
     var tester = false;
-    
+
     if (typeof audio.source_loop[x] != 'undefined') {
-      if (audio.source_loop[x]._playing){
+      if (audio.source_loop[x]._playing) {
         tester = true;
-        
-        
+
+
         if (x == 1 || x == 4 || x == 7 || x == 10) {
           loop1++;
         }
@@ -473,22 +474,22 @@ function highlightLoops() {
         if (x == 3 || x == 6 || x == 9 || x == 12) {
           loop3++;
         }
-      } 
-    } 
-    
-    if (tester ) {
+      }
+    }
+
+    if (tester) {
       playing++;
       document.getElementById("button-loop-" + x).classList.remove("loop-btn-stopped");
       document.getElementById("button-loop-" + x).classList.add("loop-btn-playing");
-      
+
     } else {
-      
+
       document.getElementById("button-loop-" + x).classList.remove("loop-btn-playing");
       document.getElementById("button-loop-" + x).classList.add("loop-btn-stopped");
     }
-    
+
   }
-  
+
   if (loop1 == 4) {
     document.getElementById('play-loop-1').classList.remove("loop-btn-playing");
     document.getElementById('play-loop-1').classList.remove("loop-btn-stopped");
@@ -501,7 +502,7 @@ function highlightLoops() {
     document.getElementById('play-loop-1').classList.remove("loop-btn-stopped");
     document.getElementById('play-loop-1').className += " loop-btn-stopped";
   }
-  
+
   if (loop2 == 4) {
     document.getElementById('play-loop-2').classList.remove("loop-btn-playing");
     document.getElementById('play-loop-2').classList.remove("loop-btn-stopped");
@@ -514,7 +515,7 @@ function highlightLoops() {
     document.getElementById('play-loop-2').classList.remove("loop-btn-stopped");
     document.getElementById('play-loop-2').className += " loop-btn-stopped";
   }
-  
+
   if (loop3 == 4) {
     document.getElementById('play-loop-3').classList.remove("loop-btn-playing");
     document.getElementById('play-loop-3').classList.remove("loop-btn-stopped");
@@ -527,28 +528,28 @@ function highlightLoops() {
     document.getElementById('play-loop-3').classList.remove("loop-btn-stopped");
     document.getElementById('play-loop-3').className += " loop-btn-stopped";
   }
-  
+
   if (playing == 0) {
     audioPlaying = false;
-    
+
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
     document.getElementById('main-play-pause').className += " play-btn";
-    
-    
+
+
     document.getElementById('mixer').classList.remove("mixer-off");
     document.getElementById('mixer').className += " mixer-off";
-    
+
     document.querySelector('canvas').style.opacity = "0";
-    
+
   } else {
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
     document.getElementById('main-play-pause').className += " pause-btn";
-    
+
     document.getElementById('mixer').classList.remove("mixer-off");
     audioPlaying = true;
-    
+
     document.querySelector('canvas').style.opacity = "1";
   }
 
@@ -562,41 +563,70 @@ function highlightLoops() {
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
   var loaderImg;
-  
-  if(!appRunning) {
-      appStart();
-    }
-  
-  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && !mobileLoaded) {
-    var loaderImg = document.createElement("img");
-    loaderImg.src = "images/loader.gif";
-    loaderImg.className = "loader"
-    document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
-    
-    setTimeout(function(){
+  var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+               navigator.userAgent && !navigator.userAgent.match('CriOS');
+  var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+  if (!appRunning) {
+    appStart();
+  }
+
+  if (!mobileLoaded) {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isSafari) {
+      var loaderImg = document.createElement("div");
+      loaderImg.innerHTML = '<div id="card-container"> <div id="dot-dot-dot">.</div><div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
+      loaderImg.className = "loader"
+      document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
+
+      setTimeout(function () {
         document.querySelector(".landing-play-btn-container").removeChild(document.querySelector(".loader"));
         mobileLoaded = true;
-      
-      audio.play(3);
-    audio.play(6);
-    audio.play(9);
-    audio.play(12);
-    
-    audioPlaying = true;
-      highlightLoops();
-        
-      }, 6000);
-  } 
-  
 
-  
-  
-  if(document.getElementById('stop-all').classList.contains("pause-btn")) {
-    audioPlaying = true;
+        audio.play(3);
+        audio.play(6);
+        audio.play(9);
+        audio.play(12);
+
+        audioPlaying = true;
+        highlightLoops();
+
+      }, 14000);
+
+    } else {
+      var loaderImg = document.createElement("div");
+      loaderImg.innerHTML = '<div id="card-container"> <div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
+      loaderImg.className = "loader"
+      document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
+
+      setTimeout(function () {
+        document.querySelector(".landing-play-btn-container").removeChild(document.querySelector(".loader"));
+        mobileLoaded = true;
+
+        audio.play(3);
+        audio.play(6);
+        audio.play(9);
+        audio.play(12);
+
+        audioPlaying = true;
+        highlightLoops();
+        
+
+      }, 1000);
+    }
+    return false;
   }
   
+  console.log("passed");
+
+
+
+
+  if (document.getElementById('stop-all').classList.contains("pause-btn")) {
+    audioPlaying = true;
+  }
+
   if (!audioPlaying) {
-    
+
     for (var n = 0; n < audio.files.length; n++) {
       audio.stop(n + 1);
     }
@@ -604,36 +634,36 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
     audio.play(6);
     audio.play(9);
     audio.play(12);
-    
+
     audioPlaying = true;
-    
-    if(!document.getElementById('main-play-pause').classList.contains("pause-btn")){
+
+    if (!document.getElementById('main-play-pause').classList.contains("pause-btn")) {
       document.getElementById('main-play-pause').classList.add("pause-btn")
     }
-    if(document.getElementById('main-play-pause').classList.contains("play-btn")){
+    if (document.getElementById('main-play-pause').classList.contains("play-btn")) {
       document.getElementById('main-play-pause').classList.remove("play-btn");
     }
-    
+
     document.querySelector('canvas').style.opacity = "1";
-    
+
   } else {
     for (var n = 0; n < audio.files.length; n++) {
       audio.stop(n + 1);
     }
-    
-    if(document.getElementById('main-play-pause').classList.contains("pause-btn")){
+
+    if (document.getElementById('main-play-pause').classList.contains("pause-btn")) {
       document.getElementById('main-play-pause').classList.remove("pause-btn")
     }
-    if(!document.getElementById('main-play-pause').classList.contains("play-btn")){
+    if (!document.getElementById('main-play-pause').classList.contains("play-btn")) {
       document.getElementById('main-play-pause').classList.add("play-btn");
     }
-    
+
     audioPlaying = false;
     document.querySelector('canvas').style.opacity = "0";
   }
-  
-  
-  
+
+
+
   highlightLoops();
 });
 
@@ -643,9 +673,9 @@ document.getElementById('play-loop-1').addEventListener('click', function (e) {
     if (n == 0 || n == 3 || n == 6 || n == 9) {
       if (playingAllLoop1 === true) {
         audio.stop(n + 1);
-        
+
       } else {
-        
+
         audio.stop(n + 1);
         audio.play(n + 1);
       }
@@ -656,7 +686,7 @@ document.getElementById('play-loop-1').addEventListener('click', function (e) {
   playingAllLoop1 = !playingAllLoop1;
   playingAllLoop2 = false;
   playingAllLoop3 = false;
-  
+
   highlightLoops();
 });
 
@@ -681,7 +711,7 @@ document.getElementById('play-loop-2').addEventListener('click', function (e) {
   playingAllLoop2 = !playingAllLoop2;
   playingAllLoop1 = false;
   playingAllLoop3 = false;
-  
+
   highlightLoops();
 });
 
@@ -690,7 +720,7 @@ document.getElementById('play-loop-3').addEventListener('click', function (e) {
 
 
   for (var n = 0; n < audio.files.length; n++) {
-   
+
     if (n == 2 || n == 5 || n == 8 || n == 11) {
       if (playingAllLoop3 === true) {
         audio.stop(n + 1);
@@ -707,7 +737,7 @@ document.getElementById('play-loop-3').addEventListener('click', function (e) {
   playingAllLoop3 = !playingAllLoop3;
   playingAllLoop1 = false;
   playingAllLoop2 = false;
-  
+
   highlightLoops();
 });
 
@@ -739,24 +769,24 @@ document.getElementById('keys-volume').addEventListener("input", function () {
 //  Pans
 //-----------------
 
-if(stereoSound) {
+if (stereoSound) {
 
-document.getElementById('drum-pan').addEventListener("input", function () {
-  panNodeDrums.pan.value = parseInt(this.value) / 100;
-});
+  document.getElementById('drum-pan').addEventListener("input", function () {
+    panNodeDrums.pan.value = parseInt(this.value) / 100;
+  });
 
-document.getElementById('hh-pan').addEventListener("input", function () {
-  panNodeHH.pan.value = parseInt(this.value) / 100;
-});
+  document.getElementById('hh-pan').addEventListener("input", function () {
+    panNodeHH.pan.value = parseInt(this.value) / 100;
+  });
 
-document.getElementById('bass-pan').addEventListener("input", function () {
-  panNodeBass.pan.value = parseInt(this.value) / 100;
-});
+  document.getElementById('bass-pan').addEventListener("input", function () {
+    panNodeBass.pan.value = parseInt(this.value) / 100;
+  });
 
-document.getElementById('keys-pan').addEventListener("input", function () {
-  panNodeKeys.pan.value = parseInt(this.value) / 100;
-});
-  
+  document.getElementById('keys-pan').addEventListener("input", function () {
+    panNodeKeys.pan.value = parseInt(this.value) / 100;
+  });
+
 }
 
 //-----------------  
@@ -779,7 +809,7 @@ function logslider(position) {
 }
 
 document.getElementById('drum-lo-pass').addEventListener("input", function () {
-  filterLPDrums.frequency.value =parseInt(this.value);
+  filterLPDrums.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('drum-hi-pass').addEventListener("input", function () {
@@ -815,31 +845,31 @@ document.getElementById('keys-hi-pass').addEventListener("input", function () {
 //===================
 
 function showHint(el, text) {
-  el.addEventListener("mouseover", function(e){
-    
+  el.addEventListener("mouseover", function (e) {
+
     var hint = document.createElement("p");
     hint.classList.add("help-hint");
     hint.style.left = e.pageX - (hint.offsetWidth / 2) + "px";
     hint.style.top = e.pageY + 25 + "px";
     hint.innerHTML += text;
     document.querySelector("body").appendChild(hint);
-    
-    this.addEventListener("mousemove", function(f){
+
+    this.addEventListener("mousemove", function (f) {
       document.querySelector(".help-hint").style.left = f.pageX - (document.querySelector(".help-hint").offsetWidth / 2) + "px";
       document.querySelector(".help-hint").style.top = f.pageY + 25 + "px";
     });
-    
-    this.parentNode.parentNode.addEventListener("mouseout", function handler(){
+
+    this.parentNode.parentNode.addEventListener("mouseout", function handler() {
       document.querySelector("body").removeChild(hint);
       this.removeEventListener("mouseout", handler);
-    }); 
+    });
   });
 }
 
 var lpfSections = document.querySelectorAll(".lpf");
 
 for (i = 0; i < lpfSections.length; ++i) {
-  showHint(lpfSections[i], "<b>Low Pass Filter</b><br>Move left to cut high frequencies."); 
+  showHint(lpfSections[i], "<b>Low Pass Filter</b><br>Move left to cut high frequencies.");
 }
 
 var hpfSections = document.querySelectorAll(".hpf");
@@ -924,11 +954,3 @@ function Render() {
 }
 
 Render();
-
-
-
-
-
-
-
-

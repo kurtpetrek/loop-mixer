@@ -285,8 +285,9 @@ nav {
   background: #28424c;
   font-family: "Open Sans", sans-serif;
   position: relative;
+  z-index: 1;
 }
-/* line 19, ../components/sass/_base.scss */
+/* line 20, ../components/sass/_base.scss */
 nav h1 {
   color: #bfc7c7;
   font-size: 45px;
@@ -295,14 +296,14 @@ nav h1 {
   left: 7px;
 }
 
-/* line 33, ../components/sass/_base.scss */
+/* line 34, ../components/sass/_base.scss */
 .landing-title-container {
   height: calc(100vh - 45px);
   min-height: 400px;
   width: 36%;
   float: left;
 }
-/* line 40, ../components/sass/_base.scss */
+/* line 41, ../components/sass/_base.scss */
 .landing-title-container h1 {
   font-family: "Open Sans", sans-serif;
   font-size: 15vh;
@@ -315,19 +316,19 @@ nav h1 {
   width: 100%;
 }
 @media (max-height: 333.33333px) {
-  /* line 40, ../components/sass/_base.scss */
+  /* line 41, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 50px;
   }
 }
 @media (min-height: 533.33333px) {
-  /* line 40, ../components/sass/_base.scss */
+  /* line 41, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 80px;
   }
 }
 
-/* line 56, ../components/sass/_base.scss */
+/* line 57, ../components/sass/_base.scss */
 .landing-play-btn-container {
   height: 50vh;
   width: 100%;
@@ -336,11 +337,11 @@ nav h1 {
   min-height: 100px;
   min-width: 100px;
 }
-/* line 64, ../components/sass/_base.scss */
+/* line 65, ../components/sass/_base.scss */
 .landing-play-btn-container button {
   display: none;
 }
-/* line 68, ../components/sass/_base.scss */
+/* line 69, ../components/sass/_base.scss */
 .landing-play-btn-container .landing-play-btn {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -348,7 +349,7 @@ nav h1 {
   left: 50%;
 }
 
-/* line 79, ../components/sass/_base.scss */
+/* line 80, ../components/sass/_base.scss */
 .play-btn, .pause-btn {
   box-sizing: border-box;
   width: 20vh;
@@ -358,7 +359,7 @@ nav h1 {
   cursor: pointer;
   animation: loop-playing infinite 4.53s ease-in-out;
 }
-/* line 88, ../components/sass/_base.scss */
+/* line 89, ../components/sass/_base.scss */
 .play-btn::after, .pause-btn::after {
   content: "";
   position: absolute;
@@ -370,7 +371,7 @@ nav h1 {
   left: 6vh;
   transition: .25s;
 }
-/* line 101, ../components/sass/_base.scss */
+/* line 102, ../components/sass/_base.scss */
 .play-btn::before, .pause-btn::before {
   content: "";
   position: absolute;
@@ -384,20 +385,20 @@ nav h1 {
   transition: .25s;
 }
 
-/* line 116, ../components/sass/_base.scss */
+/* line 117, ../components/sass/_base.scss */
 .play-btn:hover::after, .pause-btn:hover::after {
   border-left-color: #78abb9;
 }
-/* line 119, ../components/sass/_base.scss */
+/* line 120, ../components/sass/_base.scss */
 .play-btn:hover::before, .pause-btn:hover::before {
   border-left-color: #78abb9;
 }
 
-/* line 124, ../components/sass/_base.scss */
+/* line 125, ../components/sass/_base.scss */
 .pause-btn {
   transform: rotate(180deg);
 }
-/* line 127, ../components/sass/_base.scss */
+/* line 128, ../components/sass/_base.scss */
 .pause-btn::after {
   content: "";
   position: absolute;
@@ -408,12 +409,12 @@ nav h1 {
   top: 4vh;
   left: 10vh;
 }
-/* line 138, ../components/sass/_base.scss */
+/* line 139, ../components/sass/_base.scss */
 .pause-btn::before {
   opacity: 1;
 }
 
-/* line 145, ../components/sass/_base.scss */
+/* line 146, ../components/sass/_base.scss */
 .mixer-container {
   box-sizing: border-box;
   float: right;
@@ -429,30 +430,30 @@ nav h1 {
   background: #fefefe;
 }
 
-/* line 161, ../components/sass/_base.scss */
+/* line 162, ../components/sass/_base.scss */
 .mixer-off {
   transition: 1s;
   filter: grayscale(50%) brightness(80%);
 }
 
-/* line 166, ../components/sass/_base.scss */
+/* line 167, ../components/sass/_base.scss */
 .mixer-off:hover {
   transition: .25s;
   filter: grayscale(30%) brightness(90%);
 }
 
-/* line 171, ../components/sass/_base.scss */
+/* line 172, ../components/sass/_base.scss */
 .main-loops-container {
   padding: 2vh 0vh;
   text-align: center;
 }
 
-/* line 176, ../components/sass/_base.scss */
+/* line 177, ../components/sass/_base.scss */
 .loop-btn-stopped:focus, .loop-btn-playing:focus {
   outline: none;
 }
 
-/* line 180, ../components/sass/_base.scss */
+/* line 181, ../components/sass/_base.scss */
 .loop-btn-stopped {
   box-sizing: border-box;
   border: 1vh solid #99503c;
@@ -475,7 +476,7 @@ nav h1 {
     filter: brightness(100%);
   }
 }
-/* line 197, ../components/sass/_base.scss */
+/* line 198, ../components/sass/_base.scss */
 .loop-btn-playing {
   box-sizing: border-box;
   border: 1vh solid #395e6e;
@@ -488,7 +489,7 @@ nav h1 {
   animation: loop-playing infinite 4.53s ease-in-out;
 }
 
-/* line 209, ../components/sass/_base.scss */
+/* line 210, ../components/sass/_base.scss */
 .loop-btn-large {
   min-height: 30px;
   height: 5vh;
@@ -498,42 +499,42 @@ nav h1 {
   font-size: 14px;
 }
 
-/* line 226, ../components/sass/_base.scss */
+/* line 227, ../components/sass/_base.scss */
 .channel-strip {
   float: left;
   width: 25%;
 }
 
-/* line 231, ../components/sass/_base.scss */
+/* line 232, ../components/sass/_base.scss */
 .loop-btns {
   text-align: center;
 }
 
-/* line 235, ../components/sass/_base.scss */
+/* line 236, ../components/sass/_base.scss */
 .icon {
   text-align: center;
   min-height: 30px;
   height: 5vh;
 }
-/* line 239, ../components/sass/_base.scss */
+/* line 240, ../components/sass/_base.scss */
 .icon img {
   height: 100%;
   margin-top: 1vh;
 }
 
-/* line 245, ../components/sass/_base.scss */
+/* line 246, ../components/sass/_base.scss */
 .filter-section {
   position: relative;
   color: #99503c;
   height: 60px;
 }
-/* line 250, ../components/sass/_base.scss */
+/* line 251, ../components/sass/_base.scss */
 .filter-section .label-left {
   position: absolute;
   left: 5%;
   font-size: 10px;
 }
-/* line 256, ../components/sass/_base.scss */
+/* line 257, ../components/sass/_base.scss */
 .filter-section .label-center {
   position: absolute;
   transform: translate(-50%, 0%);
@@ -542,21 +543,21 @@ nav h1 {
   font-weight: bold;
   bottom: -2px;
 }
-/* line 266, ../components/sass/_base.scss */
+/* line 267, ../components/sass/_base.scss */
 .filter-section .label-right {
   position: absolute;
   right: 5%;
   font-size: 10px;
 }
 
-/* line 275, ../components/sass/_base.scss */
+/* line 276, ../components/sass/_base.scss */
 .volume-container {
   position: relative;
   height: 33vh;
   width: 85px;
   margin: auto;
 }
-/* line 281, ../components/sass/_base.scss */
+/* line 282, ../components/sass/_base.scss */
 .volume-container::after {
   content: "Volume";
   width: 100%;
@@ -568,7 +569,7 @@ nav h1 {
   font-size: 20px;
 }
 
-/* line 295, ../components/sass/_base.scss */
+/* line 296, ../components/sass/_base.scss */
 .volume-section {
   width: 0px;
   height: 0px;
@@ -577,7 +578,7 @@ nav h1 {
   transform: translateX(-50%) translateY(-50%) rotate(-90deg);
 }
 
-/* line 307, ../components/sass/_base.scss */
+/* line 308, ../components/sass/_base.scss */
 .help-hint {
   position: absolute;
   max-width: 190px;
@@ -587,7 +588,7 @@ nav h1 {
   border-radius: 20px;
   padding: 5px;
 }
-/* line 317, ../components/sass/_base.scss */
+/* line 318, ../components/sass/_base.scss */
 .help-hint::before {
   content: "";
   width: 0px;
@@ -600,7 +601,7 @@ nav h1 {
   border-bottom: 10px solid #99503c;
 }
 
-/* line 331, ../components/sass/_base.scss */
+/* line 332, ../components/sass/_base.scss */
 canvas {
   width: 105%;
   position: absolute;
@@ -612,13 +613,442 @@ canvas {
   transition: .5s;
 }
 
-/* line 352, ../components/sass/_base.scss */
-.loader {
-  max-width: 50%;
+@keyframes artsy {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(-140deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+/* line 19, ../components/sass/_sailing.scss */
+#card-container {
+  width: 400px;
+  height: 200px;
+  box-shadow: 4px 4px 10px 3px rgba(0, 0, 0, 0.5);
+  background: #C9FAFF;
+  overflow: hidden;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translate3d(0, 0, 0);
   top: 50%;
   left: 50%;
+  animation: artsy infinite 10s;
+  opacity: .7;
+}
+/* line 36, ../components/sass/_sailing.scss */
+#card-container::after {
+  content: "Searching for insperation";
+  position: absolute;
+  color: #395e6e;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px;
+  animation: loading-text 4s infinite linear;
+}
+
+@keyframes dot1 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes dot2 {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes dot3 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* line 101, ../components/sass/_sailing.scss */
+#dot-dot-dot {
+  color: #395e6e;
+  position: absolute;
+  font-size: 40px;
+  left: 257px;
+  top: 88px;
+  z-index: 100;
+  animation: dot1 4s infinite linear;
+}
+/* line 110, ../components/sass/_sailing.scss */
+#dot-dot-dot::before {
+  color: #395e6e;
+  font-size: 40px;
+  position: absolute;
+  content: ".";
+  left: 10px;
+  top: 0px;
+  animation: dot2 4s infinite linear;
+}
+/* line 120, ../components/sass/_sailing.scss */
+#dot-dot-dot::after {
+  color: #395e6e;
+  font-size: 40px;
+  position: absolute;
+  content: ".";
+  left: 20px;
+  top: 0px;
+  animation: dot3 4s infinite linear;
+}
+
+/* line 131, ../components/sass/_sailing.scss */
+#water {
+  list-style: none;
+}
+
+@keyframes wave {
+  0% {
+    top: 170px;
+  }
+  50% {
+    top: 180px;
+  }
+  100% {
+    top: 170px;
+  }
+}
+/* line 148, ../components/sass/_sailing.scss */
+#water li {
+  box-shadow: -5px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  top: 170px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  animation: wave 2s infinite;
+}
+/* line 156, ../components/sass/_sailing.scss */
+#water li:first-child {
+  background: linear-gradient(135deg, #3d7fa8 0%, #004878 50%, #1173b0 50%, #004878 100%);
+  transform: rotate(-30deg);
+  box-shadow: -7px -4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 161, ../components/sass/_sailing.scss */
+#water li:nth-child(2) {
+  background: linear-gradient(135deg, #040438 0%, #040438 50%, #0000a6 50%, #060652 100%);
+  left: 150px;
+  transform: rotate(-50deg);
+  box-shadow: -7px -4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 167, ../components/sass/_sailing.scss */
+#water li:nth-child(3) {
+  background: linear-gradient(45deg, #040438 0%, #579394 50%, #a1fcff 50%, #a1fcff 100%);
+  left: 0px;
+  transform: rotate(27deg);
+}
+/* line 172, ../components/sass/_sailing.scss */
+#water li:nth-child(4) {
+  background: linear-gradient(45deg, #3d7fa8 0%, #004878 50%, #1173b0 50%, #004878 100%);
+  left: 240px;
+  transform: rotate(27deg);
+  animation-delay: 0.2s;
+}
+/* line 178, ../components/sass/_sailing.scss */
+#water li:nth-child(5) {
+  background: linear-gradient(135deg, #040438 0%, #040438 50%, #0000a6 50%, #060652 100%);
+  left: -120px;
+  transform: rotate(-30deg);
+  animation-delay: 0.3s;
+  box-shadow: -7px -4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 185, ../components/sass/_sailing.scss */
+#water li:nth-child(6) {
+  background: linear-gradient(45deg, #040438 0%, #579394 50%, #a1fcff 50%, #a1fcff 100%);
+  left: 250px;
+  transform: rotate(47deg);
+  animation-delay: 0.1s;
+}
+/* line 191, ../components/sass/_sailing.scss */
+#water li:nth-child(8) {
+  background: linear-gradient(135deg, #3d7fa8 0%, #004878 50%, #1173b0 50%, #004878 100%);
+  transform: rotate(-40deg);
+  left: 0px;
+  animation-delay: 0.7s;
+  box-shadow: -7px -4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 198, ../components/sass/_sailing.scss */
+#water li:nth-child(9) {
+  background: linear-gradient(135deg, #040438 0%, #040438 50%, #0000a6 50%, #060652 100%);
+  left: 240px;
+  transform: rotate(-20deg);
+  animation-delay: 0.2s;
+  box-shadow: 0px -4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 205, ../components/sass/_sailing.scss */
+#water li:nth-child(10) {
+  background: linear-gradient(45deg, #040438 0%, #579394 50%, #a1fcff 50%, #a1fcff 100%);
+  left: 150px;
+  transform: rotate(27deg);
+  animation-delay: 0.5s;
+}
+
+@keyframes sail {
+  0% {
+    top: 85px;
+    left: -200px;
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    top: 110px;
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    top: 85px;
+    left: 400px;
+  }
+}
+/* line 233, ../components/sass/_sailing.scss */
+#boat {
+  width: 160px;
+  height: 0px;
+  position: absolute;
+  border-bottom: 50px solid #333;
+  border-top: 30px solid transparent;
+  border-radius: 40%;
+  top: 90px;
+  left: 100px;
+  animation: sail 10s infinite linear;
+  box-shadow: -2px 3px 1px 0px rgba(0, 0, 0, 0.5);
+}
+/* line 244, ../components/sass/_sailing.scss */
+#boat #sail-left {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-right: 60px solid #333;
+  border-top: 80px solid transparent;
+  border-bottom: 0px solid transparent;
+  top: -90px;
+  box-shadow: 2px 3px 1px 0px rgba(0, 0, 0, 0.5);
+}
+/* line 254, ../components/sass/_sailing.scss */
+#boat #sail-left:after {
+  content: "";
+  height: 90px;
+  width: 5px;
+  background: #333;
+  position: absolute;
+  top: -80px;
+  left: 63px;
+  box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+}
+/* line 264, ../components/sass/_sailing.scss */
+#boat #sail-right {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-left: 90px solid #333;
+  border-top: 80px solid transparent;
+  border-bottom: 0px solid transparent;
+  top: -90px;
+  left: 70px;
+  box-shadow: -2px 3px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes move-cloud1 {
+  0% {
+    left: -210px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+/* line 287, ../components/sass/_sailing.scss */
+#cloud1, #cloud2 {
+  list-style: none;
+  width: 100px;
+  height: 0px;
+  position: absolute;
+  border-radius: 30% 50%;
+  border-top: 30px solid #aaa;
+  border-bottom: 20px solid transparent;
+  top: 30px;
+  left: 10px;
+  animation: move-cloud1 16s infinite linear;
+  box-shadow: -1px -2px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* line 301, ../components/sass/_sailing.scss */
+#cloud1:before, #cloud2:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 0px;
+  border-radius: 40% 30%;
+  border-top: 45px solid #aaa;
+  border-bottom: 20px solid transparent;
+  top: -45px;
+  left: 20px;
+}
+
+@keyframes move-cloud2 {
+  0% {
+    left: 200px;
+  }
+  100% {
+    left: 500px;
+  }
+}
+/* line 322, ../components/sass/_sailing.scss */
+#cloud2 {
+  left: 200px;
+  width: 80px;
+  border-top: 20px solid #aaa;
+  animation: move-cloud2 16s infinite linear;
+}
+
+/* line 330, ../components/sass/_sailing.scss */
+#cloud2:before {
+  width: 40px;
+  top: -30px;
+  border-top: 30px solid #aaa;
+}
+
+@keyframes rain {
+  0% {
+    top: -50px;
+    color: #3d7fa8;
+  }
+  80% {
+    color: transparent;
+  }
+  100% {
+    top: 230px;
+  }
+}
+/* line 350, ../components/sass/_sailing.scss */
+#rain {
+  width: 400px;
+  height: 200px;
+}
+/* line 353, ../components/sass/_sailing.scss */
+#rain li {
+  color: #3d7fa8;
+  position: absolute;
+  list-style: none;
+  animation: rain 1s infinite linear;
+  top: -50px;
+}
+/* line 359, ../components/sass/_sailing.scss */
+#rain li::before {
+  content: ".";
+  position: absolute;
+  top: 0px;
+  font-size: 30px;
+}
+/* line 366, ../components/sass/_sailing.scss */
+#rain li:first-child {
+  left: 100px;
+  animation-delay: .1s;
+}
+/* line 370, ../components/sass/_sailing.scss */
+#rain li:nth-child(2) {
+  left: 150px;
+  animation-delay: .3s;
+}
+/* line 374, ../components/sass/_sailing.scss */
+#rain li:nth-child(3) {
+  left: 200px;
+  animation-delay: .2s;
+}
+/* line 378, ../components/sass/_sailing.scss */
+#rain li:nth-child(4) {
+  left: 250px;
+  animation-delay: .4s;
+}
+/* line 382, ../components/sass/_sailing.scss */
+#rain li:nth-child(5) {
+  left: 250px;
+  animation-delay: .7s;
+}
+/* line 386, ../components/sass/_sailing.scss */
+#rain li:nth-child(6) {
+  left: 300px;
+  animation-delay: .15s;
+}
+/* line 390, ../components/sass/_sailing.scss */
+#rain li:nth-child(7) {
+  left: 350px;
+  animation-delay: .6s;
+}
+/* line 394, ../components/sass/_sailing.scss */
+#rain li:nth-child(8) {
+  left: 400px;
+  animation-delay: .4s;
+}
+/* line 398, ../components/sass/_sailing.scss */
+#rain li:nth-child(9) {
+  left: 29px;
+  animation-delay: .2s;
+}
+/* line 402, ../components/sass/_sailing.scss */
+#rain li:nth-child(10) {
+  left: 59px;
+  animation-delay: .8s;
+}
+/* line 406, ../components/sass/_sailing.scss */
+#rain li:nth-child(11) {
+  left: 129px;
+  animation-delay: .2s;
+}
+/* line 410, ../components/sass/_sailing.scss */
+#rain li:nth-child(12) {
+  left: 169px;
+  animation-delay: .65s;
+}
+/* line 414, ../components/sass/_sailing.scss */
+#rain li:nth-child(13) {
+  left: 269px;
+  animation-delay: .1s;
+}
+/* line 418, ../components/sass/_sailing.scss */
+#rain li:nth-child(14) {
+  left: 339px;
+  animation-delay: .53s;
+}
+/* line 422, ../components/sass/_sailing.scss */
+#rain li:nth-child(15) {
+  left: 379px;
 }
 
 @media (max-width: 920px) {
