@@ -30,7 +30,8 @@ var audio = {
 
 var audioPlaying = false,
     appRunning = false,
-    stereoSound = false;;
+    stereoSound = false,
+    mobileLoaded = false;
 
 var playingAllLoop1 = false,
   playingAllLoop2 = false,
@@ -106,8 +107,8 @@ audio.play = function (n) {
       }
 
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
-      filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
-      filterHPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-hi-pass').value));
+      filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
+      filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
       
     }
 
@@ -126,8 +127,8 @@ audio.play = function (n) {
       }
       
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
-      filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
-      filterHPHH.frequency.value = logslider(parseInt(document.getElementById('hh-hi-pass').value));
+      filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
+      filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
       
     }
 
@@ -146,8 +147,8 @@ audio.play = function (n) {
       }
       
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
-      filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
-      filterHPBass.frequency.value = logslider(parseInt(document.getElementById('bass-hi-pass').value));
+      filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
+      filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
       
     }
 
@@ -165,8 +166,8 @@ audio.play = function (n) {
         gainNodeKeys.connect(audio.context.destination);
       }
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
-      filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
-      filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
+      filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
+      filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
       
     }
 
@@ -191,8 +192,8 @@ audio.play = function (n) {
       panNodeDrums.connect(analyser);
       panNodeDrums.connect(audio.context.destination);
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
-      filterLPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-lo-pass').value));
-      filterHPDrums.frequency.value = logslider(parseInt(document.getElementById('drum-hi-pass').value));
+      filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
+      filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
       panNodeDrums.pan.value = parseInt(document.getElementById('drum-pan').value) / 100;
     }
 
@@ -204,8 +205,8 @@ audio.play = function (n) {
       gainNodeHH.connect(analyser);
       panNodeHH.connect(audio.context.destination);
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
-      filterLPHH.frequency.value = logslider(parseInt(document.getElementById('hh-lo-pass').value));
-      filterHPHH.frequency.value = logslider(parseInt(document.getElementById('hh-hi-pass').value));
+      filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
+      filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
       panNodeHH.pan.value = parseInt(document.getElementById('hh-pan').value) / 100;
     }
 
@@ -217,8 +218,8 @@ audio.play = function (n) {
       gainNodeBass.connect(analyser);
       panNodeBass.connect(audio.context.destination);
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
-      filterLPBass.frequency.value = logslider(parseInt(document.getElementById('bass-lo-pass').value));
-      filterHPBass.frequency.value = logslider(parseInt(document.getElementById('bass-hi-pass').value));
+      filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
+      filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
       panNodeBass.pan.value = parseInt(document.getElementById('bass-pan').value) / 100;
     }
 
@@ -230,8 +231,8 @@ audio.play = function (n) {
       gainNodeKeys.connect(analyser);
       panNodeKeys.connect(audio.context.destination);
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
-      filterLPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-lo-pass').value));
-      filterHPKeys.frequency.value = logslider(parseInt(document.getElementById('keys-hi-pass').value));
+      filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
+      filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
       panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
     }
 
@@ -247,7 +248,8 @@ audio.play = function (n) {
       // Now queue up our looping sound to start immediatly after the source_once audio plays.
       audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
     } else {
-      audio.source_loop[n][audio.compatibility.start](0, offset);
+        audio.source_loop[n][audio.compatibility.start](0, offset);
+
     }
 
     audio.source_loop[n]._playing = true;
@@ -351,17 +353,28 @@ if (audio.proceed) {
   for (var a in audio.files) {
     (function () {
       var i = parseInt(a) + 1;
+      var loaderImg;
+    
 
       var req = new XMLHttpRequest();
       req.open('GET', audio.files[i - 1], true); // array starts with 0 hence the -1
       req.responseType = 'arraybuffer';
       req.onreadystatechange = function(){
-        req.onload = function () {
+        if(this.readyState === 4) {
+        req.onload = function () {  
           audio.context.decodeAudioData(
             req.response,
             function (buffer) {
               audio.buffer[i] = buffer;
               audio.source_loop[i] = {};
+              
+//              audio.play(i);
+//              audio.stop(i);
+              
+              fixLoadBug(i);
+              
+              
+              
               var button = document.getElementById('button-loop-' + i);
 
               if (i == 1 || i == 4 || i == 7 || i == 10) {
@@ -374,7 +387,7 @@ if (audio.proceed) {
                 var op1 = i - 1;
                 var op2 = i - 2;
               }
-
+              
 
               button.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -393,15 +406,47 @@ if (audio.proceed) {
             }
           );
         };
+        }
+        
       }
       req.send();
+      
     })();
   }
 }
 }
 
-appStart();
+if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  appStart();
+} 
 
+
+
+
+function fixLoadBug(index) {
+    var loopCounter = 0;
+    for(var x = 1; x < 12; x++){
+        if(typeof audio.source_loop[x] === "undefined" || typeof audio.source_loop[x].loop === "boolean"){
+          loopCounter++;
+        }
+    }
+  
+    try {
+      
+      if(typeof audio.source_loop[index].loop == "undefined"){
+          audio.play(index);
+          audio.stop(index);
+          
+        }
+      
+      
+  }
+  catch(err) {
+      setTimeout(function(){
+        fixLoadBug(index);
+      }, 2000);
+  }
+}
 
 function highlightLoops() {
   var loop1 = 0,
@@ -512,12 +557,39 @@ function highlightLoops() {
 }
 
 
+
+
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
+  var loaderImg;
   
   if(!appRunning) {
-    appStart();
-  }
+      appStart();
+    }
+  
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && !mobileLoaded) {
+    var loaderImg = document.createElement("img");
+    loaderImg.src = "images/loader.gif";
+    loaderImg.className = "loader"
+    document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
+    
+    setTimeout(function(){
+        document.querySelector(".landing-play-btn-container").removeChild(document.querySelector(".loader"));
+        mobileLoaded = true;
+      
+      audio.play(3);
+    audio.play(6);
+    audio.play(9);
+    audio.play(12);
+    
+    audioPlaying = true;
+      highlightLoops();
+        
+      }, 6000);
+  } 
+  
+
+  
   
   if(document.getElementById('stop-all').classList.contains("pause-btn")) {
     audioPlaying = true;
@@ -667,6 +739,8 @@ document.getElementById('keys-volume').addEventListener("input", function () {
 //  Pans
 //-----------------
 
+if(stereoSound) {
+
 document.getElementById('drum-pan').addEventListener("input", function () {
   panNodeDrums.pan.value = parseInt(this.value) / 100;
 });
@@ -682,6 +756,8 @@ document.getElementById('bass-pan').addEventListener("input", function () {
 document.getElementById('keys-pan').addEventListener("input", function () {
   panNodeKeys.pan.value = parseInt(this.value) / 100;
 });
+  
+}
 
 //-----------------  
 //  Filters
@@ -703,43 +779,35 @@ function logslider(position) {
 }
 
 document.getElementById('drum-lo-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterLPDrums.frequency.value = curve;
+  filterLPDrums.frequency.value =parseInt(this.value);
 });
 
 document.getElementById('drum-hi-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterHPDrums.frequency.value = curve;
+  filterHPDrums.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('hh-lo-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterLPHH.frequency.value = curve;
+  filterLPHH.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('hh-hi-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterHPHH.frequency.value = curve;
+  filterHPHH.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('bass-lo-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterLPBass.frequency.value = curve;
+  filterLPBass.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('bass-hi-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterHPBass.frequency.value = curve;
+  filterHPBass.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('keys-lo-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterLPKeys.frequency.value = curve;
+  filterLPKeys.frequency.value = parseInt(this.value);
 });
 
 document.getElementById('keys-hi-pass').addEventListener("input", function () {
-  var curve = logslider(parseInt(this.value));
-  filterHPKeys.frequency.value = curve;
+  filterHPKeys.frequency.value = parseInt(this.value);
 });
 
 //===================
@@ -771,15 +839,13 @@ function showHint(el, text) {
 var lpfSections = document.querySelectorAll(".lpf");
 
 for (i = 0; i < lpfSections.length; ++i) {
-  showHint(lpfSections[i], "<b>Low Pass Filter</b><br>Move left to cut high frequencies.<br>WARNING<br>If this crosses HPF there will be no sound.");
-  
+  showHint(lpfSections[i], "<b>Low Pass Filter</b><br>Move left to cut high frequencies."); 
 }
 
 var hpfSections = document.querySelectorAll(".hpf");
 
 for (i = 0; i < hpfSections.length; ++i) {
-  showHint(hpfSections[i], "<b>High Pass Filter</b><br>Move right to cut low frequencies.<br>WARNING<br>If this crosses LPF there will be no sound.");
-  
+  showHint(hpfSections[i], "<b>High Pass Filter</b><br>Move right to cut low frequencies.");
 }
 
 var panSections = document.querySelectorAll(".pan");
@@ -830,7 +896,7 @@ function Render() {
     canvasContext.fillStyle = '#BFC7C7';
     canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     canvasContext.lineWidth = 1;
-    canvasContext.strokeStyle = '#222';
+    canvasContext.strokeStyle = '#fefefe';
     canvasContext.beginPath();
 
     var sliceWidth = WIDTH * .8 / freqBufferLength;

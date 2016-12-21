@@ -13,13 +13,15 @@
     <h1>Kurt Petrek</h1>
   </nav>
   <div class="landing-title-container">
-    <h1>Creating<br>Media</h1>
-    
-    <div class="landing-play-btn-container">
+   <div class="landing-play-btn-container">
       <canvas></canvas>
       <button id="stop-all" type="button" value="stop">Stop All</button>
       <label for="stop-all" id="main-play-pause" class="play-btn landing-play-btn"></label>
     </div>
+    
+    <h1>Creating<br>Media</h1>
+    
+    
   <!-- /.landing-title-container -->
   </div>
   <!-- /.landing-title-container -->
@@ -50,18 +52,18 @@
       <!-- /.icon-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20" id="drum-hi-pass" class="slider">
+        <input type="range" min="20" max="1000" value="20" id="drum-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
         <p class="label-center hpf">HPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">1kHz</p>
       </div>
       <!-- /.high-pass-filter-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20000" id="drum-lo-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="1000" max="10000" value="10000" id="drum-lo-pass" class="slider">
+        <p class="label-left">1kHz</p>
         <p class="label-center lpf">LPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">10kHz</p>
       </div>
       <!-- /.low-pass-filter-->
       
@@ -100,18 +102,18 @@
       <!-- /.icon-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20" id="hh-hi-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="400" max="5000" value="400" id="hh-hi-pass" class="slider">
+        <p class="label-left">400Hz</p>
         <p class="label-center hpf">HPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">5kHz</p>
       </div>
       <!-- /.high-pass-filter-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20000" id="hh-lo-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="5000" max="15000" value="15000" id="hh-lo-pass" class="slider">
+        <p class="label-left">5kHz</p>
         <p class="label-center lpf">LPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">15kHz</p>
       </div>
       <!-- /.low-pass-filter-->
       
@@ -150,18 +152,18 @@
       <!-- /.icon-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20" id="bass-hi-pass" class="slider">
+        <input type="range" min="20" max="500" value="20" id="bass-hi-pass" class="slider">
         <p class="label-left">20Hz</p>
         <p class="label-center hpf">HPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">500Hz</p>
       </div>
       <!-- /.high-pass-filter-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20000" id="bass-lo-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="500" max="7000" value="7000" id="bass-lo-pass" class="slider">
+        <p class="label-left">500Hz</p>
         <p class="label-center lpf">LPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">7kHz</p>
       </div>
       <!-- /.low-pass-filter-->
       
@@ -202,18 +204,18 @@
       <!-- /.icon-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20" id="keys-hi-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="100" max="500" value="100" id="keys-hi-pass" class="slider">
+        <p class="label-left">100Hz</p>
         <p class="label-center hpf">HPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">500Hz</p>
       </div>
       <!-- /.high-pass-filter-->
       
       <div class="filter-section">
-        <input type="range" min="20" max="20000" value="20000" id="keys-lo-pass" class="slider">
-        <p class="label-left">20Hz</p>
+        <input type="range" min="500" max="5000" value="5000" id="keys-lo-pass" class="slider">
+        <p class="label-left">500Hz</p>
         <p class="label-center lpf">LPF</p>
-        <p class="label-right">20kHz</p>
+        <p class="label-right">5kHz</p>
       </div>
       <!-- /.low-pass-filter-->
       

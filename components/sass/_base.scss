@@ -42,7 +42,7 @@ nav {
     @include responsive-font(15vh, 50px, 80px);
     text-align: center;
     padding-top: 10vh;
-    color: $glbl-clr-5;
+    color: $white;
     -webkit-text-stroke: .15vw $glbl-clr-6;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
     float: left;
@@ -58,6 +58,8 @@ nav {
   width: 100%;
   position: relative;
   float: left;
+  min-height: 100px;
+  min-width: 100px;
   
   button {
     display: none;
@@ -70,6 +72,7 @@ nav {
     top: 50%;
     left: 50%;
     
+    
   }
 }
 
@@ -80,6 +83,7 @@ nav {
   border-radius: 50%;
   border: 5px solid $glbl-clr-5;
   cursor: pointer;
+  animation: loop-playing infinite 4.53s ease-in-out;
 
   &::after {
     content: "";
@@ -150,7 +154,8 @@ nav {
   min-height: 470px;
   max-height: 720px;
   font-family: $font;
-  background: rgba(255,255,255,0.1);
+ // background: rgba(255,255,255,0.1);
+  background: $white;
 }
 
 .mixer-off {
@@ -183,6 +188,12 @@ nav {
   transition: .25s;
 }
 
+@keyframes loop-playing {
+  0% {filter: brightness(100%)}
+  50% {filter: brightness(120%)}
+  100% {filter: brightness(100%)}
+}
+
 .loop-btn-playing {
   box-sizing: border-box;
   border: 1vh solid $glbl-clr-1;
@@ -192,6 +203,7 @@ nav {
   font-weight: bold;
   cursor: pointer;
   transition: .25s;
+  animation: loop-playing infinite 4.53s ease-in-out;
 }
 
 .loop-btn-large {
@@ -336,4 +348,12 @@ canvas {
 //================
 // utility classes Styles
 //================
+
+.loader {
+  max-width: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
 
