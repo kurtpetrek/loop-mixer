@@ -83,6 +83,10 @@ audio.findSync = function (n) {
   return offset;
 };
 
+//-----------------
+// Play Audio
+//-----------------
+
 audio.play = function (n) {
 
   if (audio.source_loop[n]._playing) {
@@ -268,6 +272,10 @@ audio.play = function (n) {
   }
 };
 
+//-----------------
+// Stop Audio
+//-----------------
+
 audio.stop = function (n) {
 
   if (audio.source_loop[n]._playing) {
@@ -427,12 +435,13 @@ function appStart() {
   }
 }
 
+// Start app if not mobile
+
 if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
   appStart();
 }
 
-
-
+//Fix bug attempt not working 
 
 function fixLoadBug(index) {
   try {
@@ -448,6 +457,10 @@ function fixLoadBug(index) {
     }, 2000);
   }
 }
+
+//-----------------------------
+// Highlights currently playing loop
+//-----------------------------
 
 function highlightLoops() {
   var loop1 = 0,
@@ -557,8 +570,9 @@ function highlightLoops() {
 
 }
 
-
-
+//-----------------------------
+// Main Buttons
+//-----------------------------
 
 document.getElementById('stop-all').addEventListener('click', function (e) {
   e.preventDefault();
@@ -892,19 +906,6 @@ for (i = 0; i < iconSections.length; ++i) {
 
 var loopBtnLarges = document.querySelectorAll(".loop-btn-large");
 
-//for (i = 0; i < loopBtnLarges.length; ++i) {
-//  showHint(loopBtnLarges[i], loopBtnLarges[i].title);
-//}
-//
-//var loopBtnSmalls = document.querySelectorAll(".loop-btn-small");
-//
-//for (i = 0; i < loopBtnSmalls.length; ++i) {
-//  showHint(loopBtnSmalls[i], loopBtnSmalls[i].title);
-//}
-
-
-
-
 
 
 //==================
@@ -923,10 +924,10 @@ function Render() {
     requestAnimationFrame(draw);
 
     analyser.getByteTimeDomainData(frequencyData);
-    canvasContext.fillStyle = '#BFC7C7';
+    canvasContext.fillStyle = '#7E827A';
     canvasContext.fillRect(0, 0, WIDTH, HEIGHT);
     canvasContext.lineWidth = 1;
-    canvasContext.strokeStyle = '#fefefe';
+    canvasContext.strokeStyle = '#703030';
     canvasContext.beginPath();
 
     var sliceWidth = WIDTH * .8 / freqBufferLength;

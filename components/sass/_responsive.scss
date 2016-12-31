@@ -25,6 +25,13 @@
     width: 100%;
     left: 50%;
   }
+  
+  canvas {
+    transform: rotate(90deg) translate(-25%, -0%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
 }
 
 @media (max-width: 630px) {
@@ -50,6 +57,13 @@
     height: inherit;
     padding-bottom: 20px;
   }
+  
+  canvas {
+    transform: rotate(0deg) translate(0%, -0%);
+    top: 0%;
+    left: 0%;
+  }
+  
 }
 
 @media (max-width: 450px) {
@@ -58,4 +72,5 @@
       opacity: 0;
     }
   }
+  
 }
