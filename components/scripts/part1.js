@@ -1,8 +1,3 @@
-/* part1.js      (update name changes in gulpfile)
-==================================== */
-
-// var $ = require('jquery');
-
 //--------------
 // Audio Object
 //--------------
@@ -113,7 +108,6 @@ audio.play = function (n) {
       gainNodeDrums.gain.value = document.getElementById('drum-volume').value / 100;
       filterLPDrums.frequency.value = parseInt(document.getElementById('drum-lo-pass').value);
       filterHPDrums.frequency.value = parseInt(document.getElementById('drum-hi-pass').value);
-
     }
 
     if (n === 4 || n === 5 || n === 6) {
@@ -133,7 +127,6 @@ audio.play = function (n) {
       gainNodeHH.gain.value = document.getElementById('hh-volume').value / 100;
       filterLPHH.frequency.value = parseInt(document.getElementById('hh-lo-pass').value);
       filterHPHH.frequency.value = parseInt(document.getElementById('hh-hi-pass').value);
-
     }
 
     if (n === 7 || n === 8 || n === 9) {
@@ -153,7 +146,6 @@ audio.play = function (n) {
       gainNodeBass.gain.value = document.getElementById('bass-volume').value / 100;
       filterLPBass.frequency.value = parseInt(document.getElementById('bass-lo-pass').value);
       filterHPBass.frequency.value = parseInt(document.getElementById('bass-hi-pass').value);
-
     }
 
     if (n === 10 || n === 11 || n === 12) {
@@ -172,10 +164,7 @@ audio.play = function (n) {
       gainNodeKeys.gain.value = document.getElementById('keys-volume').value / 100;
       filterLPKeys.frequency.value = parseInt(document.getElementById('keys-lo-pass').value);
       filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
-
     }
-
-    //     audio.source_loop[n].connect(audio.context.destination);
 
     var offset = audio.findSync(n);
     audio.source_loop[n]._startTime = audio.context.currentTime;
@@ -239,8 +228,7 @@ audio.play = function (n) {
         filterHPKeys.frequency.value = parseInt(document.getElementById('keys-hi-pass').value);
         panNodeKeys.pan.value = parseInt(document.getElementById('keys-pan').value) / 100;
       }
-
-
+      
       audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset); // currentTime, offset, duration
 
       /*
@@ -261,13 +249,9 @@ audio.play = function (n) {
           window.location.reload(false);
         }
       }
-
     }
     
     audio.source_loop[n]._playing = true;
-    
-    
-    
     
   }
 };
@@ -286,7 +270,6 @@ audio.stop = function (n) {
       audio.source_once[n][audio.compatibility.stop](0);
     }
   }
-
 };
 
 //-----------------------------
@@ -298,9 +281,6 @@ function appStart() {
     // More info at http://caniuse.com/#feat=audio-api
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     audio.context = new window.AudioContext();
-
-
-
   } catch (e) {
     audio.proceed = false;
     alert('Web Audio API not supported in this browser.');
@@ -320,9 +300,6 @@ function appStart() {
       panNodeBass = audio.context.createStereoPanner();
       panNodeKeys = audio.context.createStereoPanner();
     }
-
-
-
 
     filterLPDrums = audio.context.createBiquadFilter();
     filterLPDrums.type = 'lowpass';
@@ -374,8 +351,6 @@ function appStart() {
       (function () {
         var i = parseInt(a) + 1;
         var loaderImg;
-
-
         var req = new XMLHttpRequest();
         req.open('GET', audio.files[i - 1], true); // array starts with 0 hence the -1
         req.responseType = 'arraybuffer';
@@ -386,15 +361,6 @@ function appStart() {
                 function (buffer) {
                   audio.buffer[i] = buffer;
                   audio.source_loop[i] = {};
-
-
-                  var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-                  if (!isFirefox) {
-//                    fixLoadBug(i);
-                  }
-
-
-
 
                   var button = document.getElementById('button-loop-' + i);
 
@@ -408,7 +374,6 @@ function appStart() {
                     var op1 = i - 1;
                     var op2 = i - 2;
                   }
-
 
                   button.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -441,23 +406,6 @@ if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navig
   appStart();
 }
 
-//Fix bug attempt not working 
-
-function fixLoadBug(index) {
-  try {
-
-    if (typeof audio.source_loop[index].loop == "undefined") {
-      audio.play(index);
-      audio.stop(index);
-    }
-
-  } catch (err) {
-    setTimeout(function () {
-      fixLoadBug(index);
-    }, 2000);
-  }
-}
-
 //-----------------------------
 // Highlights currently playing loop
 //-----------------------------
@@ -468,7 +416,6 @@ function highlightLoops() {
     loop3 = 0,
     playing = 0;
 
-
   for (var x = 1; x < audio.files.length + 1; x++) {
 
     var tester = false;
@@ -476,7 +423,6 @@ function highlightLoops() {
     if (typeof audio.source_loop[x] != 'undefined') {
       if (audio.source_loop[x]._playing) {
         tester = true;
-
 
         if (x == 1 || x == 4 || x == 7 || x == 10) {
           loop1++;
@@ -496,11 +442,9 @@ function highlightLoops() {
       document.getElementById("button-loop-" + x).classList.add("loop-btn-playing");
 
     } else {
-
       document.getElementById("button-loop-" + x).classList.remove("loop-btn-playing");
       document.getElementById("button-loop-" + x).classList.add("loop-btn-stopped");
     }
-
   }
 
   if (loop1 == 4) {
@@ -544,17 +488,15 @@ function highlightLoops() {
 
   if (playing == 0) {
     audioPlaying = false;
-
+    
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
     document.getElementById('main-play-pause').className += " play-btn";
-
 
     document.getElementById('mixer').classList.remove("mixer-off");
     document.getElementById('mixer').className += " mixer-off";
 
     document.querySelector('canvas').style.opacity = "0";
-
   } else {
     document.getElementById('main-play-pause').classList.remove("pause-btn");
     document.getElementById('main-play-pause').classList.remove("play-btn");
@@ -565,9 +507,6 @@ function highlightLoops() {
 
     document.querySelector('canvas').style.opacity = "1";
   }
-
-
-
 }
 
 //-----------------------------
@@ -623,17 +562,12 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
 
         audioPlaying = true;
         highlightLoops();
-        
-
       }, 1000);
     }
     return false;
   }
   
   console.log("passed");
-
-
-
 
   if (document.getElementById('stop-all').classList.contains("pause-btn")) {
     audioPlaying = true;
@@ -676,8 +610,6 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
     document.querySelector('canvas').style.opacity = "0";
   }
 
-
-
   highlightLoops();
 });
 
@@ -707,7 +639,6 @@ document.getElementById('play-loop-1').addEventListener('click', function (e) {
 document.getElementById('play-loop-2').addEventListener('click', function (e) {
   e.preventDefault();
 
-
   for (var n = 0; n < audio.files.length; n++) {
 
     if (n == 1 || n == 4 || n == 7 || n == 10) {
@@ -731,7 +662,6 @@ document.getElementById('play-loop-2').addEventListener('click', function (e) {
 
 document.getElementById('play-loop-3').addEventListener('click', function (e) {
   e.preventDefault();
-
 
   for (var n = 0; n < audio.files.length; n++) {
 
@@ -800,27 +730,11 @@ if (stereoSound) {
   document.getElementById('keys-pan').addEventListener("input", function () {
     panNodeKeys.pan.value = parseInt(this.value) / 100;
   });
-
 }
 
 //-----------------  
 //  Filters
 //-----------------
-
-function logslider(position) {
-  // position will be between 0 and 100
-  var minp = 20;
-  var maxp = 20000;
-
-  // The result should be between 100 an 10000000
-  var minv = Math.log(20);
-  var maxv = Math.log(20000);
-
-  // calculate adjustment factor
-  var scale = (maxv - minv) / (maxp - minp);
-
-  return Math.exp(minv + scale * (position - minp));
-}
 
 document.getElementById('drum-lo-pass').addEventListener("input", function () {
   filterLPDrums.frequency.value = parseInt(this.value);
@@ -905,8 +819,6 @@ for (i = 0; i < iconSections.length; ++i) {
 }
 
 var loopBtnLarges = document.querySelectorAll(".loop-btn-large");
-
-
 
 //==================
 // Visual
