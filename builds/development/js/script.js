@@ -284,7 +284,7 @@ function appStart() {
     audio.context = new window.AudioContext();
   } catch (e) {
     audio.proceed = false;
-    alert('Web Audio API not supported in this browser.');
+    buildNoAudioScreen();
   }
 
   if (audio.proceed) {
@@ -405,6 +405,13 @@ function appStart() {
 
 if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
   appStart();
+}
+
+function buildNoAudioScreen() {
+  
+  var htmlContent = '<div id="card-container" class="audio-error"> <div id="dot-dot-dot">.</div><div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
+  
+  document.getElementById('mixer').innerHTML = htmlContent;
 }
 
 //-----------------------------
@@ -528,7 +535,7 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
   if (!mobileLoaded) {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || isSafari) {
       var loaderImg = document.createElement("div");
-      loaderImg.innerHTML = '<div id="card-container"> <div id="dot-dot-dot">.</div><div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
+      loaderImg.innerHTML = '<div id="card-container" class="sail-loading"> <div id="dot-dot-dot">.</div><div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
       loaderImg.className = "loader"
       document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
 
@@ -548,7 +555,7 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
 
     } else {
       var loaderImg = document.createElement("div");
-      loaderImg.innerHTML = '<div id="card-container"> <div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
+      loaderImg.innerHTML = '<div id="card-container" class="sail-loading"> <div id="cloud1"> </div><div id="cloud2"> </div><ul id="water"> <li></li><li></li><li></li><li></li><li></li><li></li><div id="boat"> <div id="sail-left"></div><div id="sail-right"></div></div><li></li><li></li><li></li></ul> <ul id="rain"> <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>';
       loaderImg.className = "loader"
       document.querySelector(".landing-play-btn-container").appendChild(loaderImg);
 
@@ -867,7 +874,9 @@ function Render() {
   draw();
 }
 
-Render();
+if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  Render();
+}
 
 /* part2.js      (update name changes in gulpfile)
 ==================================== */

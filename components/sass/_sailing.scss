@@ -32,19 +32,6 @@ $rain: #3d7fa8;
   animation: artsy infinite 10s;
   opacity: .7;
   
-  
-  &::after {
-    content: "Searching for inspiration";
-    position: absolute;
-    color: $glbl-clr-1;
-    font-weight: bold;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 24px;
-    animation: loading-text 4s infinite linear;
-  }
 }
 
 @keyframes dot1 {
