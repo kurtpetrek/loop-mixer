@@ -6,4 +6,4 @@ It has controls for Volume, High Pass Filter, Low Pass Filter and Pan (if suppor
 
 There is also a canvas visualization for the audio playback.
 
-It is currently viewable live at kurtpetrek.com/loop-mixer
+It is currently viewable in an updated state at kurtpetrek.com
