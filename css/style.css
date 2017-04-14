@@ -438,53 +438,53 @@ nav ul li a:active {
   /* line 167, ../components/sass/_base.scss */
   nav #menu li {
     display: block;
-    width: 50%;
-    min-width: 250px;
+    width: inherit;
+    min-width: 200px;
+    margin: 0px;
     left: 50%;
     transform: translate(-50%, 0%);
     text-align: center;
-    margin: 0px;
     padding: 20px 0px;
     transition: 1s;
   }
-  /* line 178, ../components/sass/_base.scss */
+  /* line 179, ../components/sass/_base.scss */
   nav #menu li a {
     padding: 10px;
   }
-  /* line 183, ../components/sass/_base.scss */
+  /* line 184, ../components/sass/_base.scss */
   nav #main-menu-toggle:checked + label #main-menu-btn {
     height: 10px;
     border-radius: 0% 0% 50% 50%;
     top: 50px;
   }
-  /* line 188, ../components/sass/_base.scss */
+  /* line 189, ../components/sass/_base.scss */
   nav #main-menu-toggle:checked + label #main-menu-btn::before {
     top: -30px;
     transform: rotate(405deg);
   }
-  /* line 193, ../components/sass/_base.scss */
+  /* line 194, ../components/sass/_base.scss */
   nav #main-menu-toggle:checked + label #main-menu-btn::after {
     top: -30px;
     transform: rotate(-405deg);
     box-shadow: 3px 3px 5px 0px transparent;
   }
-  /* line 200, ../components/sass/_base.scss */
+  /* line 201, ../components/sass/_base.scss */
   nav #main-menu-toggle:checked ~ #menu {
     top: 50px;
   }
-  /* line 202, ../components/sass/_base.scss */
+  /* line 203, ../components/sass/_base.scss */
   nav #main-menu-toggle:checked ~ #menu li {
     opacity: 1;
   }
 }
-/* line 214, ../components/sass/_base.scss */
+/* line 215, ../components/sass/_base.scss */
 .landing-title-container {
   height: calc(100vh - 45px);
   min-height: 400px;
   width: 36%;
   float: left;
 }
-/* line 221, ../components/sass/_base.scss */
+/* line 222, ../components/sass/_base.scss */
 .landing-title-container h1 {
   font-family: "Open Sans", sans-serif;
   font-size: 15vh;
@@ -499,19 +499,19 @@ nav ul li a:active {
   z-index: 0;
 }
 @media (max-height: 333.33333px) {
-  /* line 221, ../components/sass/_base.scss */
+  /* line 222, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 50px;
   }
 }
 @media (min-height: 533.33333px) {
-  /* line 221, ../components/sass/_base.scss */
+  /* line 222, ../components/sass/_base.scss */
   .landing-title-container h1 {
     font-size: 80px;
   }
 }
 
-/* line 238, ../components/sass/_base.scss */
+/* line 239, ../components/sass/_base.scss */
 .landing-play-btn-container {
   height: 50vh;
   width: 100%;
@@ -520,11 +520,11 @@ nav ul li a:active {
   min-height: 100px;
   min-width: 100px;
 }
-/* line 246, ../components/sass/_base.scss */
+/* line 247, ../components/sass/_base.scss */
 .landing-play-btn-container button {
   display: none;
 }
-/* line 250, ../components/sass/_base.scss */
+/* line 251, ../components/sass/_base.scss */
 .landing-play-btn-container .landing-play-btn {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -532,7 +532,7 @@ nav ul li a:active {
   left: 50%;
 }
 
-/* line 261, ../components/sass/_base.scss */
+/* line 262, ../components/sass/_base.scss */
 .play-btn, .pause-btn {
   box-sizing: border-box;
   width: 20vh;
@@ -544,7 +544,7 @@ nav ul li a:active {
   animation: loop-playing infinite 4.53s ease-in-out;
   transition: .5s;
 }
-/* line 272, ../components/sass/_base.scss */
+/* line 273, ../components/sass/_base.scss */
 .play-btn::after, .pause-btn::after {
   content: "";
   position: absolute;
@@ -556,7 +556,7 @@ nav ul li a:active {
   left: 6vh;
   transition: .25s;
 }
-/* line 285, ../components/sass/_base.scss */
+/* line 286, ../components/sass/_base.scss */
 .play-btn::before, .pause-btn::before {
   content: "";
   position: absolute;
@@ -570,22 +570,22 @@ nav ul li a:active {
   transition: .25s;
 }
 
-/* line 300, ../components/sass/_base.scss */
+/* line 301, ../components/sass/_base.scss */
 .play-btn:hover::after, .pause-btn:hover::after {
   border-left-color: #3E606F;
 }
-/* line 303, ../components/sass/_base.scss */
+/* line 304, ../components/sass/_base.scss */
 .play-btn:hover::before, .pause-btn:hover::before {
   border-left-color: #3E606F;
 }
 
-/* line 308, ../components/sass/_base.scss */
+/* line 309, ../components/sass/_base.scss */
 .pause-btn {
   transform: rotate(180deg);
   background: rgba(255, 255, 255, 0.2);
   transition: .25s;
 }
-/* line 313, ../components/sass/_base.scss */
+/* line 314, ../components/sass/_base.scss */
 .pause-btn::after {
   content: "";
   position: absolute;
@@ -596,12 +596,12 @@ nav ul li a:active {
   top: 4vh;
   left: 10vh;
 }
-/* line 324, ../components/sass/_base.scss */
+/* line 325, ../components/sass/_base.scss */
 .pause-btn::before {
   opacity: 1;
 }
 
-/* line 329, ../components/sass/_base.scss */
+/* line 330, ../components/sass/_base.scss */
 .mixer-container {
   box-sizing: border-box;
   float: right;
@@ -618,30 +618,30 @@ nav ul li a:active {
   background: #fefefe;
 }
 
-/* line 345, ../components/sass/_base.scss */
+/* line 346, ../components/sass/_base.scss */
 .mixer-off {
   transition: 1s;
   filter: grayscale(50%) brightness(80%);
 }
 
-/* line 350, ../components/sass/_base.scss */
+/* line 351, ../components/sass/_base.scss */
 .mixer-off:hover {
   transition: .25s;
   filter: grayscale(30%) brightness(90%);
 }
 
-/* line 355, ../components/sass/_base.scss */
+/* line 356, ../components/sass/_base.scss */
 .main-loops-container {
   padding: 2vh 0vh;
   text-align: center;
 }
 
-/* line 360, ../components/sass/_base.scss */
+/* line 361, ../components/sass/_base.scss */
 .loop-btn-stopped:focus, .loop-btn-playing:focus {
   outline: none;
 }
 
-/* line 364, ../components/sass/_base.scss */
+/* line 365, ../components/sass/_base.scss */
 .loop-btn-stopped {
   box-sizing: border-box;
   border: 1vh solid #703030;
@@ -664,7 +664,7 @@ nav ul li a:active {
     filter: brightness(100%);
   }
 }
-/* line 381, ../components/sass/_base.scss */
+/* line 382, ../components/sass/_base.scss */
 .loop-btn-playing {
   box-sizing: border-box;
   border: 1vh solid #193441;
@@ -677,7 +677,7 @@ nav ul li a:active {
   animation: loop-playing infinite 4.53s ease-in-out;
 }
 
-/* line 393, ../components/sass/_base.scss */
+/* line 394, ../components/sass/_base.scss */
 .loop-btn-large {
   min-height: 30px;
   height: 5vh;
@@ -687,42 +687,42 @@ nav ul li a:active {
   font-size: 14px;
 }
 
-/* line 410, ../components/sass/_base.scss */
+/* line 411, ../components/sass/_base.scss */
 .channel-strip {
   float: left;
   width: 25%;
 }
 
-/* line 415, ../components/sass/_base.scss */
+/* line 416, ../components/sass/_base.scss */
 .loop-btns {
   text-align: center;
 }
 
-/* line 419, ../components/sass/_base.scss */
+/* line 420, ../components/sass/_base.scss */
 .icon {
   text-align: center;
   min-height: 30px;
   height: 5vh;
 }
-/* line 423, ../components/sass/_base.scss */
+/* line 424, ../components/sass/_base.scss */
 .icon img {
   height: 100%;
   margin-top: 1vh;
 }
 
-/* line 429, ../components/sass/_base.scss */
+/* line 430, ../components/sass/_base.scss */
 .filter-section {
   position: relative;
   color: #703030;
   height: 60px;
 }
-/* line 434, ../components/sass/_base.scss */
+/* line 435, ../components/sass/_base.scss */
 .filter-section .label-left {
   position: absolute;
   left: 5%;
   font-size: 10px;
 }
-/* line 440, ../components/sass/_base.scss */
+/* line 441, ../components/sass/_base.scss */
 .filter-section .label-center {
   position: absolute;
   transform: translate(-50%, 0%);
@@ -731,21 +731,21 @@ nav ul li a:active {
   font-weight: bold;
   bottom: -2px;
 }
-/* line 450, ../components/sass/_base.scss */
+/* line 451, ../components/sass/_base.scss */
 .filter-section .label-right {
   position: absolute;
   right: 5%;
   font-size: 10px;
 }
 
-/* line 459, ../components/sass/_base.scss */
+/* line 460, ../components/sass/_base.scss */
 .volume-container {
   position: relative;
   height: 33vh;
   width: 85px;
   margin: auto;
 }
-/* line 465, ../components/sass/_base.scss */
+/* line 466, ../components/sass/_base.scss */
 .volume-container::after {
   content: "Volume";
   width: 100%;
@@ -757,7 +757,7 @@ nav ul li a:active {
   font-size: 20px;
 }
 
-/* line 479, ../components/sass/_base.scss */
+/* line 480, ../components/sass/_base.scss */
 .volume-section {
   width: 0px;
   height: 0px;
@@ -766,7 +766,7 @@ nav ul li a:active {
   transform: translateX(-50%) translateY(-50%) rotate(-90deg);
 }
 
-/* line 491, ../components/sass/_base.scss */
+/* line 492, ../components/sass/_base.scss */
 .help-hint {
   position: absolute;
   max-width: 190px;
@@ -776,7 +776,7 @@ nav ul li a:active {
   border-radius: 20px;
   padding: 5px;
 }
-/* line 501, ../components/sass/_base.scss */
+/* line 502, ../components/sass/_base.scss */
 .help-hint::before {
   content: "";
   width: 0px;
@@ -789,7 +789,7 @@ nav ul li a:active {
   border-bottom: 10px solid #703030;
 }
 
-/* line 515, ../components/sass/_base.scss */
+/* line 516, ../components/sass/_base.scss */
 canvas {
   width: 105%;
   position: absolute;
@@ -801,7 +801,7 @@ canvas {
   transition: .5s;
 }
 
-/* line 538, ../components/sass/_base.scss */
+/* line 539, ../components/sass/_base.scss */
 .audio-error::before {
   content: "Sorry your browser does not support the web audio api";
   display: block;
@@ -814,7 +814,7 @@ canvas {
   height: 200px;
 }
 
-/* line 552, ../components/sass/_base.scss */
+/* line 553, ../components/sass/_base.scss */
 .sail-loading::after {
   content: "Searching for inspiration";
   position: absolute;

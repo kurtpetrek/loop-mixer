@@ -167,11 +167,12 @@ nav {
     #menu li {
       display: block;
       width: 50%;
-      min-width: 250px;
+      min-width: 200px;
+      margin: 0px;
+      
       left: 50%;
       transform: translate(-50%,0%);
       text-align: center;
-      margin: 0px;
       padding: 20px 0px;
       transition: 1s;
       

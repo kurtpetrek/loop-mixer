@@ -573,8 +573,6 @@ document.getElementById('stop-all').addEventListener('click', function (e) {
     }
     return false;
   }
-  
-  console.log("passed");
 
   if (document.getElementById('stop-all').classList.contains("pause-btn")) {
     audioPlaying = true;
